@@ -58,9 +58,10 @@ h2{font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.03em;line-hei
 .sub{color:var(--muted);margin-top:8px;max-width:52ch}
 .head{margin-bottom:28px}
 
-.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
-.filters button{padding:8px 16px;border-radius:999px;color:var(--muted);font:500 14px var(--font);cursor:pointer;background:none;border:1px solid transparent}
-.filters button[aria-pressed="true"]{color:#000;background:#fff}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;position:relative}
+.pill{position:absolute;left:0;top:0;width:0;height:0;border-radius:999px;background:#fff;box-shadow:0 6px 24px rgba(255,255,255,.18);transition:transform .7s cubic-bezier(.65,0,.25,1),width .7s cubic-bezier(.65,0,.25,1),height .7s cubic-bezier(.65,0,.25,1);pointer-events:none}
+.filters button{position:relative;z-index:1;padding:8px 16px;border-radius:999px;color:var(--muted);font:500 14px var(--font);cursor:pointer;background:none;border:1px solid transparent;transition:color .5s}
+.filters button[aria-pressed="true"]{color:#000}
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .work{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s}
 .work:hover{transform:translateY(-4px)}
@@ -157,7 +158,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;colo
 <section id="works">
   <div class="wrap">
     <div class="head"><h2>Работы</h2><p class="sub">Откройте любую: сайты целиком, у ботов демо-переписка и код, у презентаций листалка слайдов.</p></div>
-    <div class="filters" role="group" aria-label="Фильтр работ" id="filters">
+    <div class="filters" role="group" aria-label="Фильтр работ" id="filters"><span class="pill" id="pill" aria-hidden="true"></span>
       <button type="button" aria-pressed="true" data-f="all">Все</button>
       <button type="button" aria-pressed="false" data-f="site">Сайты</button>
       <button type="button" aria-pressed="false" data-f="bot">Боты</button>
@@ -260,12 +261,62 @@ html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;colo
 <footer><div class="wrap">primewutxi · демо-работы, бренды и данные вымышлены</div></footer>
 
 <script>
-const btns=document.querySelectorAll('#filters button');
-btns.forEach(b=>b.addEventListener('click',()=>{
-  btns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+const bar=document.getElementById('filters');
+const btns=[...bar.querySelectorAll('button')];
+const pill=document.getElementById('pill');
+const cards=[...document.querySelectorAll('#worksGrid .work')];
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const ease='cubic-bezier(.65,0,.25,1)';
+let current='all',busy=false,queued=null;
+function movePill(instant){
+  const b=btns.find(x=>x.getAttribute('aria-pressed')==='true');
+  if(instant){pill.style.transition='none'}
+  pill.style.width=b.offsetWidth+'px';
+  pill.style.height=b.offsetHeight+'px';
+  pill.style.transform='translate('+b.offsetLeft+'px,'+b.offsetTop+'px)';
+  if(instant){pill.offsetWidth;pill.style.transition=''}
+}
+const shown=()=>cards.filter(c=>!c.hidden);
+const wait=a=>a.finished.catch(()=>{});
+async function apply(f){
+  const keep=c=>f==='all'||c.dataset.k===f;
+  const leaving=shown().filter(c=>!keep(c));
+  const coming=cards.filter(c=>c.hidden&&keep(c));
+  if(calm){cards.forEach(c=>{c.hidden=!keep(c)});return}
+  const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:650,easing:ease,fill:'forwards'}));
+  await Promise.all(out.map(wait));
+  const before=new Map(shown().filter(keep).map(c=>[c,c.getBoundingClientRect()]));
+  leaving.forEach(c=>{c.hidden=true});
+  out.forEach(a=>a.cancel());
+  coming.forEach(c=>{c.hidden=false});
+  const moves=[];
+  before.forEach((r,c)=>{
+    const n=c.getBoundingClientRect();
+    const dx=r.left-n.left,dy=r.top-n.top;
+    if(dx||dy)moves.push(c.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'none'}],{duration:800,easing:ease}));
+  });
+  coming.forEach(c=>{moves.push(c.animate([{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:800,easing:ease,delay:200,fill:'backwards'}))});
+  await Promise.all(moves.map(wait));
+}
+async function select(b){
   const f=b.dataset.f;
-  document.querySelectorAll('#worksGrid .work').forEach(w=>{w.hidden=!(f==='all'||w.dataset.k===f)});
-}));
+  btns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+  movePill(false);
+  b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+  if(busy){queued=f;return}
+  busy=true;
+  let next=f;
+  while(next!==null){
+    const t=next;next=null;
+    if(t!==current){current=t;await apply(t)}
+    if(queued!==null){next=queued;queued=null}
+  }
+  busy=false;
+}
+btns.forEach(b=>b.addEventListener('click',()=>select(b)));
+addEventListener('resize',()=>movePill(true));
+movePill(true);
+document.fonts&&document.fonts.ready.then(()=>movePill(true));
 document.getElementById('copyBtn').addEventListener('click',async()=>{
   const m=document.getElementById('copyMsg');
   try{await navigator.clipboard.writeText('@primewutxi');m.textContent='Ник скопирован.'}
