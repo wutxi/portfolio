@@ -241,7 +241,7 @@ html{scrollbar-width:thin;scrollbar-color:#777 transparent}
         <label>Гостей<select id="bGuests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
         <div class="picked" id="picked">Столик не выбран. Нажмите на свободный столик на схеме.</div>
         <label>Имя<input id="bName" autocomplete="given-name"></label>
-        <label>Телефон<input id="bPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 900 000-00-00"></label>
+        <label>Телефон<input id="bPhone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="18" placeholder="+7 (900) 000-00-00"></label>
         <button class="btn" type="submit">Забронировать</button>
         <p class="msg" id="bMsg" role="status"></p>
       </form>
@@ -335,14 +335,40 @@ function pick(el){if(!el||el.classList.contains('busy'))return;selected=+el.data
 $('#tables').addEventListener('click',e=>pick(e.target.closest('.tbl')));
 $('#tables').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(e.target.closest('.tbl'))}});
 ['#bDay','#bTime','#bGuests'].forEach(s=>$(s).addEventListener('change',()=>{if(s==='#bDay')fillTimes();drawTables()}));
+const phoneEl=$('#bPhone');
+let prevDigits='';
+function nationalDigits(v){
+  let d=v.replace(/\D/g,'');
+  if(d[0]==='7'||d[0]==='8')d=d.slice(1);
+  return d.slice(0,10);
+}
+function formatPhone(d){
+  if(!d)return '';
+  let r='+7 ('+d.slice(0,3);
+  if(d.length>3)r+=') '+d.slice(3,6);
+  if(d.length>6)r+='-'+d.slice(6,8);
+  if(d.length>8)r+='-'+d.slice(8,10);
+  return r;
+}
+phoneEl.addEventListener('input',e=>{
+  let d=nationalDigits(phoneEl.value);
+  const m=$('#bMsg');
+  if(d&&!'34589'.includes(d[0])){
+    d='';
+    m.className='msg err';m.textContent='Принимаются только российские номера: +7 и 10 цифр.';
+  }else if(m.textContent.startsWith('Принимаются')){m.textContent=''}
+  if(e.inputType&&e.inputType.startsWith('delete')&&d===prevDigits&&d)d=d.slice(0,-1);
+  prevDigits=d;
+  phoneEl.value=formatPhone(d);
+});
 fillTimes();drawTables();
 $('#bookForm').addEventListener('submit',e=>{
   e.preventDefault();const m=$('#bMsg');m.className='msg err';
-  const phone=$('#bPhone').value.replace(/\D/g,'');
+  const phone=nationalDigits($('#bPhone').value);
   if(!$('#bTime').value)return m.textContent='На выбранный день свободного времени нет.';
   if(!selected)return m.textContent='Выберите столик на схеме.';
   if(!$('#bName').value.trim())return m.textContent='Как к вам обращаться?';
-  if(phone.length<10)return m.textContent='Нужен телефон, хотя бы 10 цифр.';
+  if(phone.length<10)return m.textContent='Введите российский номер: +7 и 10 цифр.';
   const k=$('#bDay').value+$('#bTime').value;const list=mine();list.push({k,t:selected});
   try{localStorage.setItem('polka-res',JSON.stringify(list))}catch{}
   m.className='msg ok';m.textContent=`Готово: столик №${selected}, ${$('#bDay').selectedOptions[0].text.toLowerCase()} в ${$('#bTime').value}, гостей: ${$('#bGuests').value}. Держим бронь 15 минут. Демо: данные остаются в браузере.`;
