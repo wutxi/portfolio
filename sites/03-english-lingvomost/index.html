@@ -212,7 +212,7 @@ $('#quiz').addEventListener('click',e=>{
   if(e.target.id==='restart'){qi=0;score=0;weighted=0;renderQ();$('#quiz .opt').focus()}
 });
 function renderResult(){
-  const idx=weighted<=1?0:weighted<=3?1:weighted<=7?2:3;const L=LEVELS[idx];
+  const byWeight=weighted<=1?0:weighted<=3?1:weighted<=7?2:3;const byScore=score<=1?0:score===2?1:score<=4?2:3;const L=LEVELS[Math.min(byWeight,byScore)];
   $('#quiz').innerHTML=`<div class="result"><div class="qnum">ВАШ ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ</div><div class="lvl">${L.code}</div>
   <h3>${L.name} · ${score} из ${Q.length} верно</h3><p>${L.text}</p><p><b>Рекомендуем:</b> ${L.group}. Точный уровень преподаватель уточнит на бесплатном пробном уроке.</p>
   <div class="qnav"><a class="btn" href="#plans">Выбрать тариф</a><button class="btn o" type="button" id="restart">Пройти ещё раз</button></div></div>`;
