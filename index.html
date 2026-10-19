@@ -264,7 +264,8 @@ html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;colo
 const bar=document.getElementById('filters');
 const btns=[...bar.querySelectorAll('button')];
 const pill=document.getElementById('pill');
-const cards=[...document.querySelectorAll('#worksGrid .work')];
+const grid=document.getElementById('worksGrid');
+const cards=[...grid.querySelectorAll('.work')];
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const ease='cubic-bezier(.65,0,.25,1)';
 let current='all',busy=false,queued=null;
@@ -285,17 +286,27 @@ async function apply(f){
   if(calm){cards.forEach(c=>{c.hidden=!keep(c)});return}
   const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:650,easing:ease,fill:'forwards'}));
   await Promise.all(out.map(wait));
+  const h0=grid.offsetHeight;
   const before=new Map(shown().filter(keep).map(c=>[c,c.getBoundingClientRect()]));
   leaving.forEach(c=>{c.hidden=true});
   out.forEach(a=>a.cancel());
   coming.forEach(c=>{c.hidden=false});
+  const h1=grid.offsetHeight;
+  const d=Math.min(1500,800+Math.abs(h0-h1)/4);
   const moves=[];
+  if(h0!==h1){
+    grid.style.overflow='clip';
+    grid.style.overflowClipMargin='28px';
+    const g=grid.animate([{height:h0+'px'},{height:h1+'px'}],{duration:d,easing:ease});
+    moves.push(g);
+    g.finished.then(()=>{grid.style.overflow='';grid.style.overflowClipMargin=''},()=>{});
+  }
   before.forEach((r,c)=>{
     const n=c.getBoundingClientRect();
     const dx=r.left-n.left,dy=r.top-n.top;
-    if(dx||dy)moves.push(c.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'none'}],{duration:800,easing:ease}));
+    if(dx||dy)moves.push(c.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'none'}],{duration:d,easing:ease}));
   });
-  coming.forEach(c=>{moves.push(c.animate([{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:800,easing:ease,delay:200,fill:'backwards'}))});
+  coming.forEach(c=>{moves.push(c.animate([{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:d,easing:ease,delay:200,fill:'backwards'}))});
   await Promise.all(moves.map(wait));
 }
 async function select(b){
