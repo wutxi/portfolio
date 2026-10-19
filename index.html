@@ -59,8 +59,8 @@ h2{font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.03em;line-hei
 .head{margin-bottom:28px}
 
 .filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;position:relative}
-.pill{position:absolute;left:0;top:0;width:0;height:0;border-radius:999px;background:#fff;box-shadow:0 6px 24px rgba(255,255,255,.18);transition:transform .7s cubic-bezier(.65,0,.25,1),width .7s cubic-bezier(.65,0,.25,1),height .7s cubic-bezier(.65,0,.25,1);pointer-events:none}
-.filters button{position:relative;z-index:1;padding:8px 16px;border-radius:999px;color:var(--muted);font:500 14px var(--font);cursor:pointer;background:none;border:1px solid transparent;transition:color .5s}
+.pill{position:absolute;left:0;top:0;width:0;height:0;border-radius:999px;background:#fff;box-shadow:0 6px 24px rgba(255,255,255,.18);transition:transform .3s cubic-bezier(.65,0,.25,1),width .3s cubic-bezier(.65,0,.25,1),height .3s cubic-bezier(.65,0,.25,1);pointer-events:none}
+.filters button{position:relative;z-index:1;padding:8px 16px;border-radius:999px;color:var(--muted);font:500 14px var(--font);cursor:pointer;background:none;border:1px solid transparent;transition:color .3s}
 .filters button[aria-pressed="true"]{color:#000}
 .works{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .work{border-radius:24px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s}
@@ -284,7 +284,7 @@ async function apply(f){
   const leaving=shown().filter(c=>!keep(c));
   const coming=cards.filter(c=>c.hidden&&keep(c));
   if(calm){cards.forEach(c=>{c.hidden=!keep(c)});return}
-  const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:700,easing:ease,fill:'forwards'}));
+  const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:300,easing:ease,fill:'forwards'}));
   await Promise.all(out.map(wait));
   const h0=grid.offsetHeight;
   const before=new Map(shown().filter(keep).map(c=>[c,c.getBoundingClientRect()]));
@@ -292,7 +292,7 @@ async function apply(f){
   out.forEach(a=>a.cancel());
   coming.forEach(c=>{c.hidden=false});
   const h1=grid.offsetHeight;
-  const d=Math.min(1500,800+Math.abs(h0-h1)/4);
+  const d=300;
   const moves=[];
   if(h0!==h1){
     grid.style.overflow='clip';
