@@ -46,6 +46,12 @@ header{position:sticky;top:12px;z-index:10;margin-top:12px}
 @media (max-width:640px){.nav nav{display:none}}
 
 .hero{padding:96px 0 72px;text-align:center}
+.hero{position:relative;overflow:hidden}
+.hero>*:not(.key){position:relative;z-index:1}
+.key{position:absolute;z-index:0;left:50%;top:42%;width:min(900px,150%);height:auto;transform:translate(-50%,-50%) rotate(-16deg);opacity:.55;pointer-events:none;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+@media (prefers-reduced-motion:no-preference){.key{animation:keyfloat 9s ease-in-out infinite alternate}}
+@keyframes keyfloat{from{transform:translate(-50%,-50%) rotate(-16deg)}to{transform:translate(-50%,-47%) rotate(-12deg)}}
+
 .hero small{display:inline-block;padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted)}
 .hero h1{font-weight:800;font-size:clamp(40px,8vw,88px);line-height:1;letter-spacing:-.04em;margin:24px auto 20px;max-width:14ch}
 .hero p{color:var(--muted);font-size:18px;max-width:46ch;margin:0 auto}
@@ -113,6 +119,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;colo
 @media (hover:none){.thumb img{filter:none}.work:hover{transform:none}}
 @media (max-width:560px){
   .hero{padding:48px 0 40px}
+  .key{width:125%;top:36%;opacity:.38}
   .hero h1{font-size:clamp(34px,10.5vw,44px)}
   .hero p{font-size:16px}
   .hero .row .btn{flex:1 1 100%}
@@ -141,7 +148,16 @@ html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;colo
 
 <main id="top">
 <div class="wrap hero">
-  <small class="glass">Принимаю заказы</small>
+  <svg class="key" viewBox="0 0 520 200" aria-hidden="true">
+    <defs><linearGradient id="kg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".6" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity=".3"/></linearGradient></defs>
+    <g fill="url(#kg)" stroke="rgba(255,255,255,.6)" stroke-width="2">
+      <path fill-rule="evenodd" d="M20 100a80 80 0 1 0 160 0a80 80 0 1 0-160 0ZM66 100a34 34 0 1 0 68 0a34 34 0 1 0-68 0Z"/>
+      <rect x="168" y="86" width="324" height="28" rx="14"/>
+      <rect x="400" y="110" width="28" height="48" rx="6"/>
+      <rect x="448" y="110" width="28" height="34" rx="6"/>
+    </g>
+  </svg>
+    <small class="glass">Принимаю заказы</small>
   <h1>Сайты, боты и презентации под ключ</h1>
   <p>Для малого бизнеса и экспертов: от идеи и текстов до запуска. Один исполнитель, понятная смета.</p>
   <div class="row">
