@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бот-консультант для чайной лавки «Лист и пар»</title>
+<style>
+:root{--bg:#050505;--panel:rgba(255,255,255,.08);--line:rgba(255,255,255,.16);--text:#f5f5f5;--muted:rgba(245,245,245,.62);--red:#fff;--red2:#fff}
+*{box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;color-scheme:dark}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);background-clip:padding-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;overflow-x:hidden}
+main{width:min(820px,100% - 32px);margin:0 auto;padding:40px 0 72px}
+a{color:var(--red2)}
+a:focus-visible{outline:3px solid var(--red2);outline-offset:3px;border-radius:4px}
+.back{display:inline-block;margin-bottom:28px;font:600 14px ui-monospace,Consolas,monospace;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--text)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px}
+h2{font-size:24px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+p,li{color:rgba(245,245,245,.82)}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+li::marker{color:var(--red)}
+strong{color:var(--text)}
+blockquote{margin:0 0 24px;padding:12px 16px;border-left:3px solid var(--red);background:var(--panel);border-radius:0 10px 10px 0;color:var(--muted)}
+blockquote p{margin:0;color:var(--muted)}
+code{font:500 .9em ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto}
+pre code{border:0;padding:0;background:none}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:12px 0}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{margin-top:56px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../../index.html">← к портфолио</a>
+<h1>Бот-консультант для чайной лавки «Лист и пар»</h1>
+<blockquote><p>Концепт для портфолио, бренд и данные вымышлены. Лавки не существует, товары и цены я придумал.</p></blockquote>
+<p>Хотелось сделать бота, который заменяет продавца в маленьком магазине: человек заходит, смотрит каталог, задаёт вопросы, собирает корзину и оставляет заявку. А владелец получает готовый заказ в личку и просто перезванивает.</p>
+<h2>Что умеет</h2>
+<ul><li><strong>Каталог кнопками.</strong> Разделы → товары → карточка с ценой и описанием → «В корзину».</li><li><strong>Частые вопросы.</strong> Доставка, оплата, возврат, хранение, как заваривать, адрес и часы. Тексты лежат в <code>catalog.py</code>, их легко поменять.</li><li><strong>Подбор за 3 вопроса.</strong> Какой вкус нравится, когда пьёте чай, какой бюджет. Бот предлагает три подходящих варианта. Если человек пьёт чай вечером, бот покажет только напитки без кофеина.</li><li><strong>Корзина.</strong> Плюс/минус, очистка. Бот подсказывает, сколько не хватает до бесплатной доставки.</li><li><strong>Оформление заказа.</strong> Имя → телефон → самовывоз, курьер или пункт выдачи → адрес → подтверждение. Заказ сохраняется в базу и сразу прилетает админу.</li><li><strong>Умные ответы (по желанию).</strong> Если подключить ключ Claude API, бот начинает отвечать на вопросы, написанные своими словами: «что подарить маме, она любит цветочный чай?» Отвечает только по ассортименту и условиям лавки, ничего не выдумывает. Без ключа этот режим просто выключен, всё остальное работает.</li></ul>
+<h2>Как запустить (5 шагов)</h2>
+<ol><li>Поставьте Python 3.10 или новее и откройте терминал в этой папке.</li><li>Создайте окружение и установите зависимости:<pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt</code></pre> На macOS и Linux вместо второй строки: <code>source .venv/bin/activate</code>.</li><li>Напишите @BotFather в Telegram, создайте бота и скопируйте токен.</li><li>Скопируйте файл <code>.env.example</code> в <code>.env</code> и заполните:<ul><li><code>BOT_TOKEN</code> — токен от BotFather;</li><li><code>ADMIN_ID</code> — ваш числовой ID в Telegram (его покажет @userinfobot), сюда будут приходить заказы;</li><li><code>ANTHROPIC_API_KEY</code> — только если нужны умные ответы, про это ниже.</li></ul></li><li>Запустите <code>python bot.py</code> и напишите боту <code>/start</code>.</li></ol>
+<h2>Что такое API-ключ и зачем он нужен</h2>
+<p>Умные ответы пишет не сам бот, а нейросеть Claude от компании Anthropic. Бот отправляет ей вопрос покупателя вместе с каталогом и получает готовый ответ. Чтобы Anthropic понимала, кто отправляет запросы и с кого брать деньги, нужен <strong>API-ключ</strong>. Это длинная строка вида <code>sk-ant-...</code>, что-то вроде пароля от вашего аккаунта.</p>
+<p>Как получить:</p>
+<ol><li>Зарегистрироваться на <a href="https://console.anthropic.com">console.anthropic.com</a>.</li><li>Пополнить баланс в разделе Billing. Оплата по факту использования, подписки нет, минимальное пополнение — 5 долларов. Нужна карта зарубежного банка: российские карты там не принимают.</li><li>В разделе API Keys нажать Create Key, скопировать ключ и вставить в <code>.env</code> в строку <code>ANTHROPIC_API_KEY=</code>.</li></ol>
+<p>Ключ никому не показывайте и не выкладывайте в открытый доступ: с ним любой сможет тратить ваш баланс. Если ключ утёк, удалите его в консоли и создайте новый.</p>
+<h2>Сколько это стоит</h2>
+<p>Платите за объём текста, который нейросеть прочитала и написала. Текст считают в токенах, грубо: один токен — это 3–4 символа русского текста. Цены за миллион токенов (на октябрь 2026, актуальные — на странице с тарифами Anthropic):</p>
+<div class="table"><table><thead><tr><th>Модель</th><th>Чтение</th><th>Ответ</th><th>Когда брать</th></tr></thead><tbody><tr><td><code>claude-opus-5-5</code> (стоит по умолчанию)</td><td>4 $</td><td>20 $</td><td>самые точные и аккуратные ответы</td></tr><tr><td><code>claude-haiku-5-5</code></td><td>0,10 $</td><td>0,50 $</td><td>дешёвый вариант для простых вопросов</td></tr></tbody></table></div>
+<p>Один вопрос покупателя — это примерно 2 000 токенов на чтение: каталог, условия лавки и сам вопрос. Ответ — около 500 токенов. Получается так:</p>
+<ul><li><strong>Opus 5.5:</strong> около 0,02 $ за ответ, то есть 1,5–2 ₽. Тысяча вопросов в месяц — примерно 18 $.</li><li><strong>Haiku 5.5:</strong> около 0,0005 $ за ответ, меньше 5 копеек. Тысяча вопросов — меньше 1 $.</li></ul>
+<p>Для чайной лавки с вопросами вроде «что взять к десерту» хватит Haiku. Чтобы переключиться, впишите в <code>.env</code> строку <code>CLAUDE_MODEL=claude-haiku-5-5</code>. В консоли Anthropic можно поставить месячный лимит расходов: тогда точно не выйдете за бюджет.</p>
+<p>Ещё одна мелочь: на моделях Opus 5.5, Opus 5, Sonnet 5.5 и Fable 5.1 у меня включён запасной вариант. Если модель откажется отвечать, вопрос автоматически подхватит другая модель. Отключается в <code>smart.py</code>, список <code>FALLBACK_MODELS</code>.</p>
+<h2>Проверка без Telegram</h2>
+<p><code>python smoke_test.py</code> прогоняет весь сценарий на подменённом Telegram: каталог, корзину, вопросы, подбор, оформление заказа с бесплатной доставкой и уведомление админу. Умный режим тоже проверяется, но вместо настоящей нейросети подставляется заглушка, так что ни ключ, ни деньги не нужны.</p>
+<h2>Что где лежит</h2>
+<div class="table"><table><thead><tr><th>Файл</th><th>Что внутри</th></tr></thead><tbody><tr><td><code>bot.py</code></td><td>вся логика бота, оформление заказа, корзина в SQLite</td></tr><tr><td><code>catalog.py</code></td><td>товары, частые вопросы и логика подбора</td></tr><tr><td><code>smart.py</code></td><td>умные ответы через Claude API</td></tr><tr><td><code>smoke_test.py</code></td><td>проверка без Telegram</td></tr></tbody></table></div>
+<footer>Концепт для портфолио, бренд и данные вымышлены · Telegram <a href="https://t.me/primewutxi">@primewutxi</a></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лингвомост — онлайн-школа английского</title>
+<meta name="description" content="Онлайн-школа английского «Лингвомост»: тест уровня, программа, тарифы. Концепт для портфолио.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fffaf0; --ink:#14142b; --muted:#55557a; --blue:#2b4bff; --yellow:#ffd23f; --coral:#ff5a4e; --mint:#38d39f; --lilac:#e8e4ff;
+  --head:'Unbounded',system-ui,sans-serif; --body:'Onest',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+.concept{background:var(--ink);color:#fff;font-size:13px;text-align:center;padding:6px 12px}
+header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:72px;gap:16px}
+.logo{font:900 22px var(--head);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:28px;height:28px;background:var(--blue);border-radius:50% 50% 0 50%;display:inline-block}
+nav ul{display:flex;gap:28px;list-style:none;font-weight:500}
+nav a{text-decoration:none}
+nav a:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;border:0;border-radius:999px;font:700 16px var(--body);padding:14px 26px;text-decoration:none;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.y{background:var(--yellow);color:var(--ink)}
+.btn.o{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+@media (max-width:820px){nav{display:none}}
+@media (max-width:420px){header .btn{padding:10px 16px;font-size:14px}.logo{font-size:18px}}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:40px 0 72px}
+.hero h1{font:900 clamp(34px,5.4vw,70px)/1.06 var(--head);letter-spacing:-.02em}
+.hero h1 .hl{background:var(--yellow);padding:0 .12em;border-radius:12px;display:inline-block;transform:rotate(-2deg)}
+.hero p{font-size:19px;color:var(--muted);margin:20px 0 28px;max-width:44ch}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.shapes{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center}
+.shapes>*{position:absolute}
+.s1{inset:0 30% 30% 0;background:var(--blue);border-radius:50%}
+.s2{right:0;top:8%;width:42%;aspect-ratio:1;background:var(--coral);border-radius:0 50% 50% 50%}
+.s3{left:16%;bottom:0;width:48%;aspect-ratio:1;background:var(--yellow);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.s4{right:6%;bottom:6%;width:34%;aspect-ratio:1;background:var(--mint);border-radius:24px;transform:rotate(12deg)}
+.bubble{left:8%;top:14%;background:#fff;border-radius:20px 20px 20px 4px;padding:14px 18px;font:700 18px var(--head);box-shadow:6px 6px 0 var(--ink);max-width:70%}
+.bubble2{right:2%;bottom:34%;background:#fff;border-radius:20px 20px 4px 20px;padding:12px 16px;font:500 16px var(--body);box-shadow:6px 6px 0 var(--ink)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.shapes{max-width:340px}}
+
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:80px}
+.nums div{background:#fff;border:2px solid var(--ink);border-radius:24px;padding:22px}
+.nums b{display:block;font:900 clamp(44px,6vw,72px)/1 var(--head);color:var(--blue)}
+.nums div:nth-child(2) b{color:var(--coral)}
+.nums div:nth-child(3) b{color:#0f9b6c}
+.nums div:nth-child(4) b{color:var(--ink)}
+.nums span{color:var(--muted);font-size:15px}
+@media (max-width:860px){.nums{grid-template-columns:1fr 1fr}}
+
+section{padding:72px 0}
+h2{font:900 clamp(32px,5vw,56px)/1.05 var(--head);letter-spacing:-.02em;margin-bottom:12px}
+.sub{color:var(--muted);max-width:56ch;margin-bottom:32px}
+
+.test{background:var(--lilac);border-radius:40px;padding:clamp(20px,5vw,56px);position:relative;overflow:hidden}
+.test::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:var(--yellow);opacity:.6}
+.quiz{position:relative;z-index:1;max-width:720px}
+.progress{display:flex;gap:8px;margin-bottom:24px}
+.progress i{flex:1;height:8px;border-radius:8px;background:#fff}
+.progress i.on{background:var(--blue)}
+.qnum{font:700 14px var(--head);color:var(--blue);letter-spacing:.06em}
+.q{font:700 clamp(22px,3vw,30px)/1.25 var(--head);margin:8px 0 20px}
+.q code{font:inherit;background:#fff;padding:0 8px;border-radius:8px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid transparent;border-radius:16px;padding:14px 18px;font:500 17px var(--body);cursor:pointer;text-align:left;color:var(--ink);width:100%}
+.opt:hover{border-color:var(--ink)}
+.opt b{width:30px;height:30px;flex:none;border-radius:50%;background:var(--lilac);display:grid;place-items:center;font:700 14px var(--head)}
+.opt.right{border-color:#0f9b6c;background:#e4fbf2}
+.opt.wrong{border-color:var(--coral);background:#ffe9e7}
+.opt[disabled]{cursor:default}
+.explain{margin-top:14px;min-height:26px;font-size:15px;color:var(--muted)}
+.qnav{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.result{text-align:left}
+.result .lvl{font:900 clamp(72px,14vw,140px)/1 var(--head);color:var(--blue)}
+.result h3{font:700 26px var(--head);margin:8px 0}
+.result p{color:var(--muted);max-width:52ch;margin-bottom:16px}
+
+.weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.weeks button{border:2px solid var(--ink);background:#fff;border-radius:18px;padding:14px;text-align:left;cursor:pointer;font:500 15px var(--body);color:var(--ink)}
+.weeks button b{display:block;font:900 30px var(--head)}
+.weeks button[aria-selected="true"]{background:var(--ink);color:#fff}
+.weekpanel{border:2px solid var(--ink);border-radius:28px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;background:#fff}
+.weekpanel h3{font:700 26px/1.2 var(--head);margin-bottom:10px}
+.weekpanel ul{list-style:none;display:grid;gap:10px}
+.weekpanel li{padding-left:28px;position:relative}
+.weekpanel li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:4px;background:var(--mint)}
+.goal{background:var(--yellow);border-radius:20px;padding:20px}
+.goal small{font:700 13px var(--head);letter-spacing:.06em}
+@media (max-width:760px){.weeks{grid-template-columns:repeat(2,1fr)}.weekpanel{grid-template-columns:1fr}}
+
+.toggle{display:inline-flex;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:4px;margin-bottom:28px}
+.toggle button{border:0;background:transparent;border-radius:999px;padding:10px 18px;font:700 15px var(--body);cursor:pointer;color:var(--ink)}
+.toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.plan{border:2px solid var(--ink);border-radius:28px;padding:28px;background:#fff;display:flex;flex-direction:column;gap:12px}
+.plan.hot{background:var(--blue);color:#fff;border-color:var(--blue)}
+.plan h3{font:700 24px var(--head)}
+.plan .pr{font:900 44px/1 var(--head)}
+.plan .pr small{font:500 15px var(--body);opacity:.75}
+.plan .old{font-size:14px;opacity:.75;min-height:22px}
+.plan ul{list-style:none;display:grid;gap:8px;flex:1}
+.plan li::before{content:"— "}
+.plan .btn{margin-top:8px}
+.plan.hot .btn{background:var(--yellow);color:var(--ink)}
+.tag{align-self:flex-start;background:var(--yellow);color:var(--ink);font:700 12px var(--head);padding:6px 10px;border-radius:999px}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+
+footer{padding:40px 0;border-top:2px solid var(--ink);margin-top:40px;font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.hero h1 .hl{transform:none}}
+html{scrollbar-width:thin;scrollbar-color:#777 transparent}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(120,120,120,.6);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+</style>
+</head>
+<body>
+<div class="concept">Концепт для портфолио, бренд и данные вымышлены</div>
+<header><div class="wrap">
+  <a class="logo" href="#top"><i aria-hidden="true"></i>Лингвомост</a>
+  <nav aria-label="Основная навигация"><ul><li><a href="#test">Тест уровня</a></li><li><a href="#program">Программа</a></li><li><a href="#plans">Тарифы</a></li></ul></nav>
+  <a class="btn" href="#test">Пройти тест</a>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <h1>Заговорите <span style="white-space:nowrap">по-английски</span> <span class="hl">за 12 недель</span></h1>
+    <p>Живые занятия в мини-группах до 6 человек, разговорная практика с первого урока и домашка на 20 минут в день. Начните с теста: он покажет, с какой группы стартовать.</p>
+    <div class="actions"><a class="btn" href="#test">Узнать свой уровень</a><a class="btn o" href="#plans">Тарифы</a></div>
+  </div>
+  <div class="shapes" aria-hidden="true">
+    <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span>
+    <span class="bubble">How was your weekend?</span>
+    <span class="bubble2">Pretty good, thanks!</span>
+  </div>
+</div>
+<div class="wrap nums" aria-label="Формат обучения">
+  <div><b>6</b><span>человек максимум в группе</span></div>
+  <div><b>12</b><span>недель длится один курс</span></div>
+  <div><b>3</b><span>живых урока в неделю по 60 минут</span></div>
+  <div><b>20</b><span>минут в день на домашнее задание</span></div>
+</div>
+
+<section id="test" class="wrap">
+  <div class="test">
+    <div class="quiz" id="quiz" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="program" class="wrap">
+  <h2>Программа по неделям</h2>
+  <p class="sub">Пример курса для уровня Pre-Intermediate. Каждые 3 недели — один блок с понятной целью и разговорным зачётом в конце.</p>
+  <div class="weeks" role="tablist" aria-label="Блоки курса" id="weekTabs"></div>
+  <div class="weekpanel" role="tabpanel" id="weekPanel" tabindex="0"></div>
+</section>
+
+<section id="plans" class="wrap">
+  <h2>Тарифы</h2>
+  <p class="sub">Первое занятие пробное и бесплатное. Если формат не подойдёт, вернём деньги за неиспользованные уроки.</p>
+  <div class="toggle" role="group" aria-label="Период оплаты">
+    <button type="button" aria-pressed="true" data-period="1">Помесячно</button>
+    <button type="button" aria-pressed="false" data-period="3">Весь курс, 3 месяца</button>
+  </div>
+  <div class="plans" id="plans-list"></div>
+</section>
+</main>
+<footer><div class="wrap"><span>Лингвомост, онлайн-школа английского</span><span>Концепт для портфолио, бренд и данные вымышлены</span></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const Q=[
+  {q:'She ___ to work by bus every day.',o:['go','goes','is go','going'],a:1,lvl:1,e:'Present Simple, третье лицо: she goes.'},
+  {q:'I ___ this film yet.',o:["didn't see","haven't seen","don't see","wasn't see"],a:1,lvl:2,e:'Yet + Present Perfect: I haven’t seen.'},
+  {q:'If I ___ more time, I would travel more.',o:['have','had','will have','would have'],a:1,lvl:2,e:'Second Conditional: if + Past Simple.'},
+  {q:'Выберите ближайший смысл: <code>I can’t put up with it</code>',o:['Я не могу это поднять','Я не могу это терпеть','Я не могу это отложить','Я не могу с этим согласиться'],a:1,lvl:3,e:'Put up with — терпеть, мириться.'},
+  {q:'By the time we arrived, the film ___.',o:['already started','has already started','had already started','was already start'],a:2,lvl:3,e:'Past Perfect: действие завершилось раньше другого в прошлом.'}
+];
+const LEVELS=[
+  {code:'A1',name:'Beginner',text:'Начнём с базы: настоящее время, вопросы, лексика для быта. Через 12 недель вы спокойно расскажете о себе и поймёте простой диалог.',group:'Группа «Старт», утро или вечер'},
+  {code:'A2',name:'Elementary',text:'Основа есть, но речь пока скованная. Закрепим времена, разговорим на бытовых темах и научим понимать медленную речь на слух.',group:'Группа «Основа», 3 раза в неделю'},
+  {code:'B1',name:'Pre-Intermediate',text:'Грамматика в целом на месте. Дальше — беглость: обсуждения, фразовые глаголы, сериалы без русских субтитров.',group:'Группа «Разговор», вечерние слоты'},
+  {code:'B2',name:'Intermediate',text:'Уверенный уровень. Работаем над точностью и естественностью: идиомы, сложные времена, рабочие созвоны и презентации.',group:'Группа «Свободно», 2 раза в неделю'}
+];
+let qi=0,score=0,weighted=0,answered=false;
+function renderQ(){
+  const q=Q[qi];answered=false;
+  $('#quiz').innerHTML=`<div class="progress" aria-hidden="true">${Q.map((_,i)=>`<i class="${i<=qi?'on':''}"></i>`).join('')}</div>
+  <div class="qnum">ВОПРОС ${qi+1} ИЗ ${Q.length}</div><p class="q" id="qtext">${q.q}</p>
+  <div class="opts" role="group" aria-labelledby="qtext">${q.o.map((o,i)=>`<button class="opt" type="button" data-i="${i}"><b>${'ABCD'[i]}</b>${o}</button>`).join('')}</div>
+  <p class="explain" id="explain"></p>
+  <div class="qnav"><button class="btn" type="button" id="next" disabled>${qi===Q.length-1?'Показать результат':'Дальше'}</button></div>`;
+  if(qi>0)$('#quiz .opt').focus();
+}
+$('#quiz').addEventListener('click',e=>{
+  const b=e.target.closest('.opt');
+  if(b&&!answered){
+    answered=true;const q=Q[qi],i=+b.dataset.i;
+    document.querySelectorAll('#quiz .opt').forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add('right')});
+    if(i===q.a){score++;weighted+=q.lvl}else b.classList.add('wrong');
+    $('#explain').textContent=(i===q.a?'Верно. ':'Не совсем. ')+q.e;
+    $('#next').disabled=false;$('#next').focus();
+  }
+  if(e.target.id==='next'){qi++;qi<Q.length?renderQ():renderResult()}
+  if(e.target.id==='restart'){qi=0;score=0;weighted=0;renderQ();$('#quiz .opt').focus()}
+});
+function renderResult(){
+  const idx=weighted<=1?0:weighted<=3?1:weighted<=7?2:3;const L=LEVELS[idx];
+  $('#quiz').innerHTML=`<div class="result"><div class="qnum">ВАШ ОРИЕНТИРОВОЧНЫЙ УРОВЕНЬ</div><div class="lvl">${L.code}</div>
+  <h3>${L.name} · ${score} из ${Q.length} верно</h3><p>${L.text}</p><p><b>Рекомендуем:</b> ${L.group}. Точный уровень преподаватель уточнит на бесплатном пробном уроке.</p>
+  <div class="qnav"><a class="btn" href="#plans">Выбрать тариф</a><button class="btn o" type="button" id="restart">Пройти ещё раз</button></div></div>`;
+  $('#quiz .lvl').setAttribute('tabindex','-1');$('#quiz .lvl').focus();
+}
+$('#quiz').innerHTML=`<div class="qnum">5 ВОПРОСОВ · 2 МИНУТЫ</div><h2 style="margin-top:8px">Какой у вас уровень?</h2>
+<p class="sub">Пять вопросов от простого к сложному. После каждого ответа покажем правильный вариант и коротко объясним правило.</p>
+<button class="btn" type="button" id="startQuiz">Начать тест</button>`;
+$('#startQuiz').addEventListener('click',()=>{renderQ();$('#quiz .opt').focus()});
+
+const WEEKS=[
+  {n:'1–3',t:'Блок 1. Рассказать о себе',items:['Present Simple и Continuous без путаницы','Small talk: знакомство, работа, хобби','Аудирование: короткие диалоги в кафе и офисе','Лексика: 120 слов о себе и быте'],goal:'Двухминутный рассказ о себе без подготовки'},
+  {n:'4–6',t:'Блок 2. Путешествия и планы',items:['Future forms: will, going to, Present Continuous','Аэропорт, отель, ресторан: ролевые сценарии','Чтение: отзывы и инструкции','Произношение: звуки th, w и v'],goal:'Решить проблему в отеле по телефону'},
+  {n:'7–9',t:'Блок 3. Опыт и истории',items:['Past Simple против Present Perfect','Как рассказать историю: связки и паузы','Сериал недели: разбор сцены без субтитров','Фразовые глаголы: 30 самых частых'],goal:'Рассказать смешную историю из жизни за 3 минуты'},
+  {n:'10–12',t:'Блок 4. Мнение и спор',items:['Conditionals 0–2 в живой речи','Согласиться, возразить, уточнить вежливо','Дебаты в группе на бытовые темы','Итоговое повторение и разговорный зачёт'],goal:'Пятиминутная дискуссия с преподавателем'}
+];
+let wk=0;
+function renderWeeks(){
+  $('#weekTabs').innerHTML=WEEKS.map((w,i)=>`<button role="tab" id="tab${i}" aria-controls="weekPanel" aria-selected="${i===wk}" tabindex="${i===wk?0:-1}"><b>${w.n}</b>недели</button>`).join('');
+  const w=WEEKS[wk];$('#weekPanel').setAttribute('aria-labelledby','tab'+wk);
+  $('#weekPanel').innerHTML=`<div><h3>${w.t}</h3><ul>${w.items.map(i=>`<li>${i}</li>`).join('')}</ul></div><div class="goal"><small>ЗАЧЁТ В КОНЦЕ БЛОКА</small><h3 style="margin-top:8px">${w.goal}</h3><p>Проводит преподаватель один на один, 10 минут. По итогам — короткий разбор ошибок и план на следующий блок.</p></div>`;
+}
+$('#weekTabs').addEventListener('click',e=>{const b=e.target.closest('[role=tab]');if(!b)return;wk=[...b.parentNode.children].indexOf(b);renderWeeks();$('#tab'+wk).focus()});
+$('#weekTabs').addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;wk=(wk+(e.key==='ArrowRight'?1:WEEKS.length-1))%WEEKS.length;renderWeeks();$('#tab'+wk).focus()});
+renderWeeks();
+
+const PLANS=[
+  {n:'Группа',m:6900,f:['12 уроков в месяц в группе до 6 человек','Платформа с домашкой и проверкой','Разговорный клуб раз в неделю']},
+  {n:'Группа + куратор',m:9900,hot:true,f:['Всё из тарифа «Группа»','Куратор проверяет устные задания голосом','Один индивидуальный урок в месяц','Запись всех уроков']},
+  {n:'Индивидуально',m:19900,f:['12 уроков один на один','Программа под ваши задачи: работа, переезд, экзамен','Гибкое расписание и перенос урока за 6 часов']}
+];
+let period=1;
+function renderPlans(){
+  $('#plans-list').innerHTML=PLANS.map(p=>{
+    const total=period===3?Math.round(p.m*3*0.85/100)*100:p.m;
+    return `<article class="plan${p.hot?' hot':''}">${p.hot?'<span class="tag">Чаще всего выбирают</span>':''}<h3>${p.n}</h3>
+    <div class="pr">${total.toLocaleString('ru-RU')} ₽ <small>${period===3?'за 3 месяца':'в месяц'}</small></div>
+    <div class="old">${period===3?`вместо ${(p.m*3).toLocaleString('ru-RU')} ₽, скидка 15%`:''}</div>
+    <ul>${p.f.map(x=>`<li>${x}</li>`).join('')}</ul><a class="btn" href="#test">Начать с пробного</a></article>`}).join('');
+}
+document.querySelectorAll('[data-period]').forEach(b=>b.addEventListener('click',()=>{period=+b.dataset.period;
+  document.querySelectorAll('[data-period]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderPlans()}));
+renderPlans();
+</script>
+</body>
+</html>

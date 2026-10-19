@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моё портфолио: сайты, Telegram-боты, презентации и AI-ролики</title>
+<style>
+:root{--bg:#050505;--panel:rgba(255,255,255,.08);--line:rgba(255,255,255,.16);--text:#f5f5f5;--muted:rgba(245,245,245,.62);--red:#fff;--red2:#fff}
+*{box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;color-scheme:dark}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);background-clip:padding-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;overflow-x:hidden}
+main{width:min(820px,100% - 32px);margin:0 auto;padding:40px 0 72px}
+a{color:var(--red2)}
+a:focus-visible{outline:3px solid var(--red2);outline-offset:3px;border-radius:4px}
+.back{display:inline-block;margin-bottom:28px;font:600 14px ui-monospace,Consolas,monospace;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--text)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px}
+h2{font-size:24px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+p,li{color:rgba(245,245,245,.82)}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+li::marker{color:var(--red)}
+strong{color:var(--text)}
+blockquote{margin:0 0 24px;padding:12px 16px;border-left:3px solid var(--red);background:var(--panel);border-radius:0 10px 10px 0;color:var(--muted)}
+blockquote p{margin:0;color:var(--muted)}
+code{font:500 .9em ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto}
+pre code{border:0;padding:0;background:none}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:12px 0}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{margin-top:56px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="index.html">← к портфолио</a>
+<h1>Моё портфолио: сайты, Telegram-боты, презентации и AI-ролики</h1>
+<blockquote><p>Концепт для портфолио, бренд и данные вымышлены. Все компании, люди, адреса, телефоны и цены в работах я придумал. Отзывов и громких цифр вроде «нам доверяют тысячи клиентов» тут специально нет: это демо-работы, а не реальные заказы.</p></blockquote>
+<p>Привет! Я делаю сайты, Telegram-ботов, презентации и AI-ролики под ключ: для малого бизнеса и экспертов. В этой папке собраны работы, на которых видно, как я это делаю. Каждая работа — не просто картинка, а рабочая вещь: на сайтах можно записаться и посчитать стоимость, ботов можно запустить, презентации открываются в PowerPoint.</p>
+<p>Писать мне в Telegram: <a href="https://t.me/primewutxi">@primewutxi</a>.</p>
+<h2>С чего начать</h2>
+<p>Откройте <code>index.html</code> двойным кликом — это главная страница портфолио. Оттуда есть ссылки на всё остальное.</p>
+<h2>Что внутри</h2>
+<p><strong>Сайты</strong> (папка <code>sites/</code>). Пять сайтов для разных ниш, и у каждого свой характер:</p>
+<ul><li><strong>Барбершоп «Кирпич»</strong> — тёмный, с латунью. Прайс, мастера и запись: выбираешь услугу, мастера и свободное время.</li><li><strong>Кофейня «Тихая полка»</strong> — как журнал о кофе. Меню с фильтром, кофе недели с рецептами и бронь столика прямо на схеме зала.</li><li><strong>Онлайн-школа «Лингвомост»</strong> — яркая и геометричная. Тест уровня из 5 вопросов с объяснениями, программа по неделям и тарифы.</li><li><strong>Студия йоги «Тёплый вдох»</strong> — спокойная, пастельная. Расписание с фильтром по уровню, абонементы и запись на пробное.</li><li><strong>Ремонт «Отвес»</strong> — строгий, как чертёж. Калькулятор стоимости ремонта, этапы работ и примеры смет.</li></ul>
+<p>Каждый сайт — один файл <code>index.html</code>, открывается в любом браузере. Шрифты подгружаются из интернета, поэтому без сети вид будет попроще.</p>
+<p><strong>Telegram-боты</strong> (папка <code>bots/</code>). Три бота на Python. У каждого своя страница с демо-перепиской, описанием, инструкцией «как запустить за 5 шагов» и всем кодом:</p>
+<ul><li><strong>Запись в барбершоп</strong> — календарь, свободные окна, отмена и напоминание за 2 часа.</li><li><strong>Воронка для эксперта</strong> — подарок в PDF, квиз, подбор продукта и заявка.</li><li><strong>Консультант магазина</strong> — каталог, корзина, подбор чая и умные ответы через нейросеть Claude.</li></ul>
+<p><strong>Презентации</strong> (папка <code>decks/</code>). Три презентации по 10 слайдов, все в разном стиле:</p>
+<ul><li>«10 задач малого бизнеса, которые можно отдать нейросети» — тёмная, чёрно-красная, с готовыми промптами;</li><li>«Личный бренд эксперта за 30 дней» — светлая, в журнальном стиле с засечками;</li><li>«Личный бюджет за один вечер» — свежая, зелёная, со скруглёнными блоками.</li></ul>
+<p>У каждой своя страница, где слайды можно полистать прямо в браузере, и рядом лежат файл для PowerPoint (<code>deck.pptx</code>) и PDF (<code>deck.pdf</code>).</p>
+<h2>Если что-то не открывается</h2>
+<p>Иногда браузер ругается на локальные файлы. Тогда откройте терминал в папке <code>portfolio</code>, выполните</p>
+<pre><code>python -m http.server 8000</code></pre>
+<p>и зайдите в браузере на <code>http://localhost:8000</code>.</p>
+<h2>Для тех, кто хочет покопаться</h2>
+<p>В папке <code>tools/</code> лежат мои скрипты проверки:</p>
+<ul><li><code>check_sites.py</code> открывает все сайты в Chrome на ширине 1280, 390 и 360 пикселей. Он ловит горизонтальную прокрутку и ошибки, прокликивает интерактив и обновляет скриншоты для главной.</li><li><code>render_pptx.py</code> превращает презентацию в картинки и PDF и проверяет, что текст нигде не вылезает за рамки.</li><li><code>build_pages.py</code> собирает страницы проектов: у каждого бота — демо-переписка, описание и код с подсветкой, у каждой презентации — листалка слайдов и кнопки скачивания. Если поменяли README бота или пересобрали презентации, запустите его ещё раз.</li><li><code>build_readme_html.py</code> делает HTML-версии README (им же пользуется <code>build_pages.py</code>).</li></ul>
+<p>Презентации собираются кодом: <code>cd decks</code> и <code>python build_decks.py --render</code>. Нужны <code>pip install python-pptx playwright</code> и установленный Google Chrome.</p>
+<p>Сайты сделаны на чистом HTML, CSS и JavaScript, боты — на Python и aiogram 3, презентации — на python-pptx.</p>
+<footer>Концепт для портфолио, бренд и данные вымышлены · Telegram <a href="https://t.me/primewutxi">@primewutxi</a></footer>
+</main>
+</body>
+</html>

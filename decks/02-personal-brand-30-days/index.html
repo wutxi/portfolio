@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Личный бренд эксперта за 30 дней</title>
+<meta name="description" content="План по неделям: позиционирование в одну строку, понятный профиль, экспертные посты, доверие и первое предложение. Плюс ритм публикаций и метрики, которые стоит считать.">
+<style>
+:root{--bg:#0a0a0b;--bg2:#121316;--panel:#17181c;--panel2:#1f2126;--line:#2a2c32;--text:#f2f2f3;--muted:#9a9ba3;
+--red:#e5262e;--red2:#ff4b52;--redbg:rgba(229,38,46,.12);--font:'Geologica',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 17px/1.6 var(--font);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red2);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(10,10,11,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.back{font:600 14px var(--mono);color:var(--muted);text-decoration:none}
+.back:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;border:0;border-radius:12px;padding:12px 20px;font:700 15px var(--font);text-decoration:none;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--red2)}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--red)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:600 13px var(--mono);color:var(--red2);background:var(--redbg);border-radius:999px;padding:6px 12px}
+h1{font-weight:800;font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-.03em;margin:18px 0 18px}
+.lead{color:var(--muted);font-size:19px;max-width:52ch}
+.note{margin-top:18px;font-size:14px;color:var(--muted);border-left:3px solid var(--red);padding-left:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags span{font:600 12px var(--mono);border:1px solid var(--line);border-radius:8px;padding:5px 9px;color:#d5d6da}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+section{padding:64px 0;border-top:1px solid var(--line)}
+.idx{font:600 13px var(--mono);color:var(--red2);display:block;margin-bottom:10px}
+h2.sec{font-weight:800;font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;line-height:1.05;margin-bottom:24px}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+.hero{padding:48px 0 32px}
+.viewer{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:14px;margin-top:32px}
+.stage{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease}
+.stage img.on{opacity:1}
+.ctrl{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}
+.ctrl button{width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--panel2);color:var(--text);font:700 20px var(--font);cursor:pointer}
+.ctrl button:hover{border-color:var(--red)}
+.ctrl button:disabled{opacity:.35;cursor:default;border-color:var(--line)}
+.counter{font:600 14px var(--mono);color:var(--muted)}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 4px;scroll-snap-type:x mandatory}
+.thumbs button{flex:none;width:132px;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:2px solid transparent;padding:0;background:#000;cursor:pointer;opacity:.6;scroll-snap-align:start;transition:opacity .2s,border-color .2s}
+.thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs button[aria-current="true"]{border-color:var(--red);opacity:1}
+.thumbs button:hover{opacity:1}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.info div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}
+.info b{display:block;font:600 13px var(--mono);color:var(--red2);margin-bottom:8px}
+.info p{color:#d5d6da;font-size:15px}
+@media (max-width:800px){.info{grid-template-columns:1fr}.thumbs button{width:104px}}
+
+:root{--bg:#050505;--bg2:rgba(255,255,255,.05);--panel:rgba(255,255,255,.07);--panel2:rgba(255,255,255,.11);--line:rgba(255,255,255,.16);
+--text:#f5f5f5;--muted:rgba(245,245,245,.62);--red:#fff;--red2:#fff;--redbg:rgba(255,255,255,.1);
+--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:ui-monospace,"Cascadia Mono",Consolas,monospace}
+body{min-height:100vh}
+html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;color-scheme:dark}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);background-clip:padding-box}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none}
+body::before{width:55vmax;height:55vmax;left:-15vmax;top:-12vmax;background:radial-gradient(circle,rgba(255,255,255,.26),transparent 65%)}
+body::after{width:45vmax;height:45vmax;right:-12vmax;top:35vh;background:radial-gradient(circle,rgba(200,200,200,.18),transparent 65%)}
+header,.phone,.viewer,.info div,.code,.code-head,.tabs button,.ctrl button,.phone-bottom button,.btn.ghost,.kicker,.tags span,.doc code,.doc pre{
+  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+  -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
+  border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 36px rgba(0,0,0,.4)}
+header{border-width:0 0 1px 0;border-radius:0}
+.phone,.viewer,.info div,.code{border-radius:24px}
+.phone-top,.phone-bottom,.code-head{background:rgba(255,255,255,.05);box-shadow:none}
+.code-head,.doc code{backdrop-filter:none;-webkit-backdrop-filter:none}
+.btn{background:#fff;color:#000;border-radius:999px}
+.btn:hover{background:#e6e6e6}
+.btn.ghost{background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.04));color:#fff}
+.btn.ghost:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.kicker{color:#fff}
+.note{border-left-color:#fff}
+.feed{background:none}
+.phone-top i,.m.file::before,.kb span.on,.tabs button[aria-selected="true"]{background:#fff;color:#000;border-color:#fff}
+.m.u{background:#fff;color:#000}
+.kb span{background:rgba(255,255,255,.12)}
+.doc p,.doc li,.info p{color:rgba(245,245,245,.82)}
+.thumbs button[aria-current="true"]{border-color:#fff}
+@media (max-width:560px){
+  section{padding:44px 0}
+  .hero{padding-top:32px!important}
+  h1{font-size:clamp(30px,9.5vw,38px)}
+  .lead{font-size:17px}
+  .actions .btn{flex:1 1 100%}
+  .feed{height:380px}
+  .nav .btn{padding:10px 14px;font-size:14px}
+  .tags span{font-size:11.5px}
+}
+.kw{color:#fff;font-weight:700}.st{color:#cfcfcf}.cm{color:#777}.nu{color:#bdbdbd}.fn{color:#fff}.bi{color:#dcdcdc}.dc{color:#bdbdbd}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="back" href="../../index.html#works">← все работы</a>
+<a class="btn" href="https://t.me/primewutxi" target="_blank" rel="noopener">Обсудить проект</a></div></header>
+<main>
+
+<div class="wrap hero">
+  <span class="kicker">Презентация · 10 слайдов · 16:9</span>
+  <h1>Личный бренд эксперта за 30 дней</h1>
+  <p class="lead">План по неделям: позиционирование в одну строку, понятный профиль, экспертные посты, доверие и первое предложение. Плюс ритм публикаций и метрики, которые стоит считать.</p>
+  <div class="actions"><a class="btn" href="deck.pdf" download>Скачать PDF · 101 КБ</a><a class="btn ghost" href="deck.pptx" download>Скачать PPTX · 48 КБ</a></div>
+  <div class="viewer" aria-roledescription="карусель" aria-label="Слайды презентации">
+    <div class="stage"><img src="preview/slide-01.png" alt="Слайд 1" class="on" width="1920" height="1080"><img src="preview/slide-02.png" alt="Слайд 2" loading="lazy" width="1920" height="1080"><img src="preview/slide-03.png" alt="Слайд 3" loading="lazy" width="1920" height="1080"><img src="preview/slide-04.png" alt="Слайд 4" loading="lazy" width="1920" height="1080"><img src="preview/slide-05.png" alt="Слайд 5" loading="lazy" width="1920" height="1080"><img src="preview/slide-06.png" alt="Слайд 6" loading="lazy" width="1920" height="1080"><img src="preview/slide-07.png" alt="Слайд 7" loading="lazy" width="1920" height="1080"><img src="preview/slide-08.png" alt="Слайд 8" loading="lazy" width="1920" height="1080"><img src="preview/slide-09.png" alt="Слайд 9" loading="lazy" width="1920" height="1080"><img src="preview/slide-10.png" alt="Слайд 10" loading="lazy" width="1920" height="1080"></div>
+    <div class="ctrl"><button type="button" id="prev" aria-label="Предыдущий слайд">‹</button><span class="counter" id="counter" aria-live="polite"></span><button type="button" id="next" aria-label="Следующий слайд">›</button></div>
+    <div class="thumbs"><button type="button" aria-label="Слайд 1"><img src="preview/slide-01.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 2"><img src="preview/slide-02.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 3"><img src="preview/slide-03.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 4"><img src="preview/slide-04.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 5"><img src="preview/slide-05.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 6"><img src="preview/slide-06.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 7"><img src="preview/slide-07.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 8"><img src="preview/slide-08.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 9"><img src="preview/slide-09.png" alt="" loading="lazy"></button><button type="button" aria-label="Слайд 10"><img src="preview/slide-10.png" alt="" loading="lazy"></button></div>
+  </div>
+</div>
+<section><div class="wrap info">
+  <div><b>Стиль</b><p>Журнальный стиль: кремовая бумага, терракота, заголовки Georgia.</p></div>
+  <div><b>Форматы</b><p>PPTX открывается в PowerPoint, Keynote и Google Slides и редактируется. PDF удобно отправить в мессенджер.</p></div>
+  <div><b>Пометка</b><p>Концепт для портфолио, бренд и данные вымышлены. Слайды листаются стрелками на клавиатуре или свайпом.</p></div>
+</div></section>
+
+</main>
+<footer><div class="wrap"><span>Портфолио · Telegram <a href="https://t.me/primewutxi">@primewutxi</a></span><span>Концепт для портфолио, бренд и данные вымышлены</span></div></footer>
+<script>
+const imgs=[...document.querySelectorAll('.stage img')],thumbs=[...document.querySelectorAll('.thumbs button')];
+const prev=document.getElementById('prev'),next=document.getElementById('next'),counter=document.getElementById('counter');
+let cur=0;
+function go(i){cur=Math.max(0,Math.min(imgs.length-1,i));
+  imgs.forEach((im,j)=>im.classList.toggle('on',j===cur));
+  thumbs.forEach((t,j)=>t.setAttribute('aria-current',j===cur));
+  thumbs[cur].scrollIntoView({block:'nearest',inline:'nearest'});
+  prev.disabled=cur===0;next.disabled=cur===imgs.length-1;
+  counter.textContent=`${cur+1} / ${imgs.length}`}
+prev.addEventListener('click',()=>go(cur-1));next.addEventListener('click',()=>go(cur+1));
+thumbs.forEach((t,i)=>t.addEventListener('click',()=>go(i)));
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+let sx=null;const st=document.querySelector('.stage');
+st.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+st.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1));sx=null});
+go(0);
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тёплый вдох — студия йоги</title>
+<meta name="description" content="Студия йоги «Тёплый вдох»: расписание, абонементы, пробное занятие. Концепт для портфолио.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f2ec; --card:#fffdfa; --ink:#4a4642; --soft:#8b847c; --line:#e7ded3;
+  --sage:#a9b8a0; --sage-d:#5f7257; --blush:#ecd3cb; --lav:#d9d4ea; --sand:#efe3cf;
+  --head:'Tenor Sans',Georgia,serif; --body:'Jost',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:300 18px/1.7 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--sage-d);outline-offset:4px;border-radius:4px}
+.wrap{width:min(1080px,100% - 32px);margin-inline:auto}
+.concept{text-align:center;font-size:13px;color:var(--soft);padding:8px 12px;letter-spacing:.04em}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:16px}
+.logo{font:400 22px var(--head);letter-spacing:.12em;text-transform:lowercase;text-decoration:none}
+nav ul{display:flex;gap:32px;list-style:none;font-size:15px;letter-spacing:.06em}
+nav a{text-decoration:none;color:var(--soft)}
+nav a:hover{color:var(--ink)}
+@media (max-width:720px){nav{display:none}}
+.btn{display:inline-block;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:12px 26px;border-radius:999px;font:400 15px var(--body);letter-spacing:.06em;text-decoration:none;cursor:pointer;transition:background .3s,color .3s}
+.btn:hover,.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.fill:hover{background:var(--sage-d);border-color:var(--sage-d)}
+
+.hero{padding:clamp(48px,10vw,120px) 0 clamp(56px,10vw,120px);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero h1{font:400 clamp(40px,6vw,72px)/1.12 var(--head);letter-spacing:.01em}
+.hero p{color:var(--soft);margin:24px 0 36px;max-width:38ch}
+.orb{position:relative;aspect-ratio:1;width:min(420px,100%);justify-self:center}
+.orb span{position:absolute;border-radius:50%;mix-blend-mode:multiply}
+.orb .a{inset:0 18% 18% 0;background:var(--blush)}
+.orb .b{inset:18% 0 0 18%;background:var(--lav)}
+.orb .c{inset:30% 30% 30% 30%;background:var(--sage);opacity:.7}
+@media (prefers-reduced-motion:no-preference){.orb .a{animation:breathe 9s ease-in-out infinite}.orb .b{animation:breathe 9s ease-in-out -4.5s infinite}}
+@keyframes breathe{50%{transform:scale(1.05)}}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.orb{width:min(280px,100%)}}
+
+section{padding:clamp(56px,9vw,104px) 0;border-top:1px solid var(--line)}
+.label{font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--sage-d)}
+h2{font:400 clamp(32px,4.5vw,48px)/1.2 var(--head);margin:12px 0 16px}
+.lead{color:var(--soft);max-width:52ch;margin-bottom:40px}
+
+.controls{display:flex;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;margin-bottom:28px;align-items:center}
+.days{display:flex;gap:6px;flex-wrap:wrap}
+.days button{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--card);font:400 15px var(--body);cursor:pointer;color:var(--ink)}
+.days button[aria-selected="true"]{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}
+.levels{display:flex;gap:4px 18px;flex-wrap:wrap;font-size:15px}
+.levels label{display:flex;align-items:center;gap:8px;cursor:pointer}
+.levels input{accent-color:var(--sage-d);width:16px;height:16px}
+.classes{display:grid;gap:12px}
+.cls{display:grid;grid-template-columns:96px 1fr auto;gap:20px;align-items:center;background:var(--card);border-radius:20px;padding:20px 24px}
+.cls time{font:400 24px var(--head)}
+.cls time small{display:block;font:300 13px var(--body);color:var(--soft)}
+.cls h3{font:400 20px var(--head)}
+.cls p{font-size:15px;color:var(--soft)}
+.lv{display:inline-block;font-size:12px;letter-spacing:.08em;padding:2px 10px;border-radius:999px;margin-left:8px;vertical-align:3px;font-family:var(--body)}
+.lv-1{background:var(--blush)}.lv-2{background:var(--lav)}.lv-3{background:var(--sand)}
+.empty{padding:32px;text-align:center;color:var(--soft);background:var(--card);border-radius:20px}
+@media (max-width:620px){.cls{grid-template-columns:1fr;gap:6px;padding:18px}.cls .btn{justify-self:start;margin-top:8px}}
+
+.passes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pass{background:var(--card);border-radius:24px;padding:28px 24px;display:flex;flex-direction:column;gap:8px}
+.pass:nth-child(2){background:var(--blush)}
+.pass:nth-child(3){background:var(--lav)}
+.pass h3{font:400 22px var(--head)}
+.pass .pr{font:400 34px var(--head);margin-top:8px}
+.pass .per{font-size:14px;color:var(--soft)}
+.pass p{font-size:15px;color:var(--ink);flex:1}
+@media (max-width:900px){.passes{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.passes{grid-template-columns:1fr}}
+
+.trial{display:grid;grid-template-columns:1fr 1.1fr;gap:48px}
+.trial ul{list-style:none;color:var(--soft);display:grid;gap:12px}
+.trial li{padding-left:24px;position:relative}
+.trial li::before{content:"";position:absolute;left:0;top:12px;width:10px;height:10px;border-radius:50%;background:var(--sage)}
+form{background:var(--card);border-radius:28px;padding:clamp(20px,4vw,36px);display:grid;gap:18px}
+form label{display:grid;gap:6px;font-size:14px;letter-spacing:.04em;color:var(--soft)}
+form input,form select,form textarea{font:400 17px var(--body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 2px;border-radius:0}
+form input:focus,form select:focus,form textarea:focus{border-bottom-color:var(--sage-d);outline:none}
+form input:focus-visible,form select:focus-visible,form textarea:focus-visible{outline:2px solid var(--sage-d);outline-offset:2px}
+form .check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+form .check input{margin-top:5px;accent-color:var(--sage-d)}
+.msg{font-size:16px;min-height:26px}
+.msg.err{color:#a5523f}
+.done{background:var(--sage);color:#1f2a1b;border-radius:20px;padding:22px}
+.done h3{font:400 24px var(--head);margin-bottom:4px}
+@media (max-width:800px){.trial{grid-template-columns:minmax(0,1fr)}}
+form select{width:100%;min-width:0;text-overflow:ellipsis}
+form label{min-width:0}
+
+footer{padding:40px 0;border-top:1px solid var(--line);font-size:14px;color:var(--soft)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cs-native{display:none!important}
+.cs{position:relative;width:100%}
+.cs-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs-btn::after{content:"";flex:none;width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s ease}
+.cs.open .cs-btn::after{transform:translateY(2px) rotate(-135deg)}
+.cs-list{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:40;list-style:none;margin:0;padding:6px;max-height:264px;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top center;pointer-events:none;transition:opacity .18s ease,transform .24s cubic-bezier(.2,.8,.2,1),visibility 0s linear .24s}
+.cs.open .cs-list{opacity:1;visibility:visible;transform:none;pointer-events:auto;transition:opacity .18s ease,transform .24s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.cs-list:focus{outline:none}
+.cs-list li{padding:9px 12px 9px 30px;cursor:pointer;position:relative;transition:background .12s ease}
+.cs-list li[aria-selected="true"]::before{content:"";position:absolute;left:11px;top:50%;width:6px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-65%) rotate(45deg)}
+.cs-list li[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+.cs-btn{font:400 17px var(--body);color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--line);padding:10px 2px}
+.cs.open .cs-btn,.cs-btn:hover{border-bottom-color:var(--sage-d)}
+.cs-list{background:var(--card);border-radius:16px;box-shadow:0 18px 40px rgba(74,70,66,.14),0 2px 6px rgba(74,70,66,.06)}
+.cs-list li{font:400 15px var(--body);color:var(--ink);border-radius:10px}
+.cs-list li.active{background:var(--bg)}
+.cs-list li[aria-selected="true"]{color:var(--sage-d);font-weight:500}
+.trial .cs-list li{padding:9px 12px 9px 30px}
+.trial .cs-list li::before{display:none}
+.trial .cs-list li[aria-selected="true"]::before{display:block;content:"";position:absolute;left:11px;top:50%;width:6px;height:10px;border-radius:0;background:none;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-65%) rotate(45deg)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+html{scrollbar-width:thin;scrollbar-color:#777 transparent}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(120,120,120,.6);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+</style>
+</head>
+<body>
+<div class="concept">Концепт для портфолио, бренд и данные вымышлены</div>
+<header><div class="wrap">
+  <a class="logo" href="#top">тёплый вдох</a>
+  <nav aria-label="Основная навигация"><ul><li><a href="#schedule">Расписание</a></li><li><a href="#passes">Абонементы</a></li><li><a href="#trial">Пробное занятие</a></li></ul></nav>
+  <a class="btn" href="#trial">Записаться</a>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div>
+    <span class="label">Студия йоги</span>
+    <h1>Тихий зал, мягкий свет и полтора часа без телефона</h1>
+    <p>Хатха, виньяса, йога-нидра и спокойные практики для спины. Группы до 12 человек, коврики и пледы выдаём, приходите в удобной одежде.</p>
+    <a class="btn fill" href="#trial">Пробное занятие — 500 ₽</a>
+  </div>
+  <div class="orb" aria-hidden="true"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+</div>
+
+<section id="schedule">
+  <div class="wrap">
+    <span class="label">Расписание</span>
+    <h2>Выберите день и уровень</h2>
+    <p class="lead">Если вы впервые, ищите отметку «начинающим»: на этих занятиях инструктор показывает каждую позу и предлагает упрощения.</p>
+    <div class="controls">
+      <div class="days" role="tablist" aria-label="День недели" id="days"></div>
+      <fieldset class="levels" id="levels" style="border:0">
+        <legend class="label" style="margin-bottom:6px;width:100%">Уровень</legend>
+        <label><input type="radio" name="lv" value="0" checked>все</label>
+        <label><input type="radio" name="lv" value="1">начинающим</label>
+        <label><input type="radio" name="lv" value="2">с опытом</label>
+        <label><input type="radio" name="lv" value="3">продвинутым</label>
+      </fieldset>
+    </div>
+    <div class="classes" id="classes" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="passes">
+  <div class="wrap">
+    <span class="label">Абонементы</span>
+    <h2>Сколько стоит практика</h2>
+    <p class="lead">Абонемент можно заморозить один раз на срок до 14 дней. Все абонементы действуют на любые групповые занятия.</p>
+    <div class="passes">
+      <article class="pass"><h3>Разовое</h3><div class="pr">900 ₽</div><span class="per">одно занятие</span><p>Чтобы прийти, когда есть настроение, без обязательств.</p></article>
+      <article class="pass"><h3>4 занятия</h3><div class="pr">3 200 ₽</div><span class="per">действует 30 дней · 800 ₽ за занятие</span><p>Раз в неделю — хороший ритм для начала.</p></article>
+      <article class="pass"><h3>8 занятий</h3><div class="pr">5 600 ₽</div><span class="per">действует 45 дней · 700 ₽ за занятие</span><p>Два раза в неделю: так тело быстрее привыкает к нагрузке.</p></article>
+      <article class="pass"><h3>Безлимит</h3><div class="pr">8 400 ₽</div><span class="per">30 дней</span><p>Любые занятия расписания, включая йога-нидру и медитации.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="trial">
+  <div class="wrap trial">
+    <div>
+      <span class="label">Пробное занятие</span>
+      <h2>Первый раз — спокойно и недорого</h2>
+      <ul>
+        <li>Пробное стоит 500 ₽, оплата на месте.</li>
+        <li>Приходите за 15 минут: покажем раздевалку и подберём коврик.</li>
+        <li>Не ешьте плотно за 2 часа до практики.</li>
+        <li>Если есть травмы или беременность, напишите в комментарии — инструктор подготовит вариант.</li>
+      </ul>
+      <p style="margin-top:28px;color:var(--soft);font-size:15px">Улица Сонная, 3, второй этаж (адрес вымышлен).<br>Пн–Пт 7:00–22:00, Сб–Вс 9:00–20:00.</p>
+    </div>
+    <form id="trialForm" novalidate>
+      <label>Занятие<select id="tClass" required></select></label>
+      <label>Имя<input id="tName" autocomplete="given-name" required></label>
+      <label>Телефон или Telegram<input id="tContact" autocomplete="tel" placeholder="+7 900 000-00-00 или @ник" required></label>
+      <label>Комментарий для инструктора<textarea id="tNote" rows="2" placeholder="Например: болит поясница, первый раз на йоге"></textarea></label>
+      <label class="check"><input type="checkbox" id="tAgree">Даю согласие на обработку данных для записи (в концепте данные никуда не отправляются)</label>
+      <button class="btn fill" type="submit">Записаться на пробное</button>
+      <p class="msg" id="tMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>тёплый вдох · студия йоги</span><span>Концепт для портфолио, бренд и данные вымышлены</span></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const DAYS=['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+const LV={1:'начинающим',2:'с опытом',3:'продвинутым'};
+const S=[
+ [0,'07:30',60,'Утренняя хатха',1,'Мария','Мягкое пробуждение, дыхание и простые позы стоя'],
+ [0,'19:00',75,'Виньяса-флоу',2,'Олег','Динамичные связки под дыхание, работа с балансом'],
+ [0,'20:40',60,'Йога для спины',1,'Анна','Вытяжение, мобильность грудного отдела, без прогибов'],
+ [1,'09:00',60,'Хатха для начинающих',1,'Анна','Базовые позы и выравнивание, много подсказок'],
+ [1,'19:30',90,'Аштанга, первая серия',3,'Олег','Полная серия с ассистом, нужна регулярная практика'],
+ [2,'07:30',60,'Утренняя хатха',1,'Мария','Мягкое пробуждение, дыхание и простые позы стоя'],
+ [2,'18:30',75,'Силовая хатха',2,'Мария','Удержания поз, планки, укрепление корпуса'],
+ [2,'20:15',45,'Йога-нидра',1,'Анна','Расслабление лёжа, подходит после тяжёлого дня'],
+ [3,'12:00',60,'Йога в обеденный перерыв',1,'Анна','Короткая практика для шеи и плеч'],
+ [3,'19:00',90,'Перевёрнутые позы',3,'Олег','Стойки на голове и руках, подготовка и страховка'],
+ [4,'07:30',60,'Утренняя хатха',1,'Мария','Мягкое пробуждение, дыхание и простые позы стоя'],
+ [4,'19:00',75,'Виньяса-флоу',2,'Олег','Динамичные связки под дыхание, работа с балансом'],
+ [5,'10:00',90,'Хатха выходного дня',2,'Мария','Длинная практика с пранаямой и шавасаной'],
+ [5,'12:00',60,'Йога для спины',1,'Анна','Вытяжение, мобильность грудного отдела, без прогибов'],
+ [6,'11:00',75,'Инь-йога',1,'Анна','Долгие пассивные позы, тишина и пледы'],
+ [6,'17:00',60,'Медитация и дыхание',1,'Мария','Сидячая практика, техники дыхания для сна']
+];
+let day=(new Date().getDay()+6)%7,lv=0;
+function renderDays(){
+  $('#days').innerHTML=DAYS.map((d,i)=>`<button role="tab" aria-selected="${i===day}" tabindex="${i===day?0:-1}" aria-controls="classes" data-d="${i}">${d}</button>`).join('');
+}
+function renderClasses(){
+  const list=S.filter(c=>c[0]===day&&(!lv||c[4]===lv));
+  $('#classes').innerHTML=list.length?list.map((c,i)=>`<article class="cls"><time>${c[1]}<small>${c[2]} мин</small></time>
+    <div><h3>${c[3]}<span class="lv lv-${c[4]}">${LV[c[4]]}</span></h3><p>${c[6]} · ведёт ${c[5]}</p></div>
+    <a class="btn" href="#trial" data-sign="${S.indexOf(c)}">Записаться</a></article>`).join('')
+    :`<div class="empty">В этот день занятий такого уровня нет. Попробуйте другой день или фильтр «все».</div>`;
+}
+$('#days').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;day=+b.dataset.d;renderDays();renderClasses();$(`[data-d="${day}"]`).focus()});
+$('#days').addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;day=(day+(e.key==='ArrowRight'?1:6))%7;renderDays();renderClasses();$(`[data-d="${day}"]`).focus()});
+$('#levels').addEventListener('change',e=>{lv=+e.target.value;renderClasses()});
+renderDays();renderClasses();
+
+$('#tClass').innerHTML='<option value="">Выберите занятие</option>'+S.map((c,i)=>`<option value="${i}">${DAYS[c[0]]}, ${c[1]} — ${c[3]} (${LV[c[4]]})</option>`).join('');
+$('#classes').addEventListener('click',e=>{const a=e.target.closest('[data-sign]');if(!a)return;$('#tClass').value=a.dataset.sign;$('#tClass')._sync();setTimeout(()=>$('#tName').focus({preventScroll:true}),350)});
+$('#trialForm').addEventListener('submit',e=>{
+  e.preventDefault();const m=$('#tMsg');m.className='msg err';
+  if(!$('#tClass').value)return m.textContent='Выберите занятие из списка.';
+  if(!$('#tName').value.trim())return m.textContent='Напишите, как к вам обращаться.';
+  const c=$('#tContact').value.trim();
+  if(!(c.replace(/\D/g,'').length>=10||/^@[\w]{4,}$/.test(c)))return m.textContent='Укажите телефон (10+ цифр) или Telegram в формате @ник.';
+  if(!$('#tAgree').checked)return m.textContent='Нужно согласие на обработку данных.';
+  const cl=S[+$('#tClass').value];
+  const box=document.createElement('div');box.className='done';box.tabIndex=-1;
+  box.innerHTML=`<h3>Ждём вас, ${$('#tName').value.trim()}</h3><p>${DAYS[cl[0]]}, ${cl[1]}, «${cl[3]}», ведёт ${cl[5]}. Мы бы напомнили за день, но это концепт: заявка никуда не отправлена.</p>`;
+  e.target.replaceWith(box);box.focus();
+});
+
+function customSelect(sel){
+  sel.classList.add('cs-native');sel.tabIndex=-1;sel.setAttribute('aria-hidden','true');
+  const wrap=document.createElement('div');wrap.className='cs';
+  const btn=document.createElement('button');btn.type='button';btn.className='cs-btn';
+  btn.setAttribute('aria-haspopup','listbox');btn.setAttribute('aria-expanded','false');
+  const list=document.createElement('ul');list.className='cs-list';list.setAttribute('role','listbox');list.tabIndex=-1;
+  list.id=sel.id+'-list';btn.setAttribute('aria-controls',list.id);
+  const labelText=(sel.closest('label')?.firstChild?.textContent||'').trim();
+  wrap.append(btn,list);sel.after(wrap);
+  let active=-1;
+  const items=()=>[...list.children];
+  function sync(){
+    const o=sel.options[sel.selectedIndex];
+    btn.textContent=o?o.text:'—';
+    btn.setAttribute('aria-label',(labelText?labelText+': ':'')+(o?o.text:'не выбрано'));
+    items().forEach((li,i)=>li.setAttribute('aria-selected',i===sel.selectedIndex));
+  }
+  function build(){
+    list.innerHTML='';
+    [...sel.options].forEach((o,i)=>{
+      const li=document.createElement('li');li.setAttribute('role','option');li.id=list.id+'-'+i;li.textContent=o.text;
+      if(o.disabled)li.setAttribute('aria-disabled','true');list.append(li);
+    });
+    sync();
+  }
+  function highlight(i){
+    const li=items();if(!li.length)return;
+    active=Math.max(0,Math.min(li.length-1,i));
+    li.forEach((x,j)=>x.classList.toggle('active',j===active));
+    list.setAttribute('aria-activedescendant',li[active].id);
+    li[active].scrollIntoView({block:'nearest'});
+  }
+  function open(){
+    document.querySelectorAll('.cs.open').forEach(w=>w!==wrap&&w.classList.remove('open'));
+    wrap.classList.add('open');btn.setAttribute('aria-expanded','true');
+    highlight(Math.max(0,sel.selectedIndex));list.focus({preventScroll:true});
+  }
+  function close(focus=true){
+    wrap.classList.remove('open');btn.setAttribute('aria-expanded','false');if(focus)btn.focus();
+  }
+  function choose(i){
+    const o=sel.options[i];if(!o||o.disabled)return;
+    if(sel.selectedIndex!==i){sel.selectedIndex=i;sel.dispatchEvent(new Event('change',{bubbles:true}))}
+    sync();close();
+  }
+  btn.addEventListener('click',()=>wrap.classList.contains('open')?close():open());
+  btn.addEventListener('keydown',e=>{if(['ArrowDown','ArrowUp'].includes(e.key)){e.preventDefault();open()}});
+  list.addEventListener('keydown',e=>{
+    const k=e.key;
+    if(k==='ArrowDown'){e.preventDefault();highlight(active+1)}
+    else if(k==='ArrowUp'){e.preventDefault();highlight(active-1)}
+    else if(k==='Home'){e.preventDefault();highlight(0)}
+    else if(k==='End'){e.preventDefault();highlight(items().length-1)}
+    else if(k==='Enter'||k===' '){e.preventDefault();choose(active)}
+    else if(k==='Escape'){e.preventDefault();close()}
+    else if(k==='Tab'){close(false)}
+  });
+  list.addEventListener('click',e=>{const li=e.target.closest('li');if(li)choose(items().indexOf(li))});
+  list.addEventListener('mousemove',e=>{const li=e.target.closest('li');if(li)highlight(items().indexOf(li))});
+  document.addEventListener('click',e=>{if(!wrap.contains(e.target))close(false)});
+  new MutationObserver(build).observe(sel,{childList:true});
+  sel.addEventListener('change',sync);
+  sel._sync=sync;
+  build();
+}
+customSelect($('#tClass'));
+</script>
+</body>
+</html>

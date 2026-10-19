@@ -1,0 +1,4 @@
+aiogram>=3.13,<4
+python-dotenv>=1.0
+# нужен только для режима «умный ответ» (ANTHROPIC_API_KEY):
+anthropic>=1.0

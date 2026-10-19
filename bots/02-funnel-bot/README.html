@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бот-воронка для эксперта</title>
+<style>
+:root{--bg:#050505;--panel:rgba(255,255,255,.08);--line:rgba(255,255,255,.16);--text:#f5f5f5;--muted:rgba(245,245,245,.62);--red:#fff;--red2:#fff}
+*{box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;color-scheme:dark}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);background-clip:padding-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;overflow-x:hidden}
+main{width:min(820px,100% - 32px);margin:0 auto;padding:40px 0 72px}
+a{color:var(--red2)}
+a:focus-visible{outline:3px solid var(--red2);outline-offset:3px;border-radius:4px}
+.back{display:inline-block;margin-bottom:28px;font:600 14px ui-monospace,Consolas,monospace;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--text)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px}
+h2{font-size:24px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+p,li{color:rgba(245,245,245,.82)}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+li::marker{color:var(--red)}
+strong{color:var(--text)}
+blockquote{margin:0 0 24px;padding:12px 16px;border-left:3px solid var(--red);background:var(--panel);border-radius:0 10px 10px 0;color:var(--muted)}
+blockquote p{margin:0;color:var(--muted)}
+code{font:500 .9em ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto}
+pre code{border:0;padding:0;background:none}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:12px 0}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{margin-top:56px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../../index.html">← к портфолио</a>
+<h1>Бот-воронка для эксперта</h1>
+<blockquote><p>Концепт для портфолио, бренд и данные вымышлены. Эксперта «Веру Лунёву» я придумал.</p></blockquote>
+<p>Классическая история: у эксперта есть блог, люди подписываются, читают — и ничего не покупают, потому что непонятно, что именно им подойдёт. Этот бот проводит человека от «забрать бесплатный материал» до заявки на конкретный продукт и по дороге сам решает, что ему предложить.</p>
+<h2>Как устроена воронка</h2>
+<ol><li><strong>Приветствие.</strong> Коротко объясняет, кто эксперт и чем бот полезен.</li><li><strong>Подарок.</strong> Человек получает PDF-чек-лист «12 проверок профиля перед запуском рекламы». Файл лежит в <code>assets/checklist.pdf</code>.</li><li><strong>Квиз из 4 вопросов.</strong> Где вы сейчас, как часто публикуете контент, откуда приходят клиенты, какой бюджет на продвижение.</li><li><strong>Определение этапа.</strong> По сумме баллов человек попадает в один из трёх этапов: «Старт», «Рост» или «Система». К каждому идёт свой разбор: что сейчас важнее всего.</li><li><strong>Предложение под этап.</strong> Новичку — недорогой мини-курс, тому, кто растёт, — интенсив, опытному — личный аудит. Кнопки «Хочу», «Подробнее», «Не сейчас».</li><li><strong>Заявка.</strong> Имя и контакт: телефон кнопкой, вручную или ник в Telegram. Заявка сохраняется в базу и сразу приходит админу вместе со всеми ответами из квиза. На созвон эксперт идёт уже подготовленным.</li></ol>
+<p>Ещё у админа есть команда <code>/stats</code>: сколько человек зашло в бота, забрало чек-лист, прошло квиз и оставило заявку по каждому этапу. Это реальные цифры из базы, по ним видно, на каком шаге люди отваливаются.</p>
+<h2>Как запустить (5 шагов)</h2>
+<ol><li>Поставьте Python 3.10 или новее и откройте терминал в этой папке.</li><li>Создайте окружение и установите зависимости:<pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt</code></pre> На macOS и Linux вместо второй строки: <code>source .venv/bin/activate</code>.</li><li>Напишите @BotFather в Telegram, создайте бота и скопируйте токен.</li><li>Скопируйте <code>.env.example</code> в <code>.env</code>, впишите <code>BOT_TOKEN</code> и свой <code>ADMIN_ID</code> (числовой ID покажет @userinfobot).</li><li>Запустите <code>python bot.py</code> и напишите боту <code>/start</code>.</li></ol>
+<h2>Как сделать под себя</h2>
+<ul><li>Все тексты, вопросы, баллы, этапы и продукты лежат в одном файле — <code>content.py</code>. Код трогать не нужно.</li><li>Свой лид-магнит: положите PDF в папку <code>assets/</code> и пропишите путь в <code>.env</code> в строку <code>CHECKLIST_PATH</code>.</li><li>Заглушку чек-листа можно пересобрать: <code>pip install pymupdf</code>, затем <code>python make_checklist.py</code>.</li></ul>
+<h2>Проверка без Telegram</h2>
+<p><code>python smoke_test.py</code> проходит всю воронку на подменённом Telegram. Бот выдаёт PDF, не даёт оставить заявку до квиза, правильно считает этапы, проверяет контакт, уведомляет админа, а <code>/cancel</code> прерывает заявку. Токен не нужен.</p>
+<footer>Концепт для портфолио, бренд и данные вымышлены · Telegram <a href="https://t.me/primewutxi">@primewutxi</a></footer>
+</main>
+</body>
+</html>

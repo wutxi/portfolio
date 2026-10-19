@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Отвес — ремонт квартир по смете</title>
+<meta name="description" content="Ремонтная компания «Отвес»: калькулятор стоимости, этапы работ, примеры смет. Концепт для портфолио.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f3f4ef; --white:#fbfbf8; --ink:#16191d; --mute:#5d646c; --grid:#d5dce6; --grid2:#bccadb;
+  --blue:#1d4f91; --orange:#ff5b1f; --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--sans);overflow-x:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+  linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px);
+  background-size:16px 16px,16px 16px,80px 80px,80px 80px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+.concept{background:var(--ink);color:#fff;font:500 12px var(--mono);text-align:center;padding:6px 12px;letter-spacing:.04em}
+header{background:var(--white);border-bottom:2px solid var(--ink)}
+header .wrap{display:flex;align-items:stretch;justify-content:space-between;min-height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:12px;font:700 22px var(--sans);text-decoration:none;letter-spacing:.02em}
+.logo svg{width:22px;height:34px}
+nav ul{display:flex;list-style:none;height:100%}
+nav a{display:flex;align-items:center;height:100%;padding:0 18px;border-left:1px solid var(--grid2);text-decoration:none;font:500 14px var(--mono);text-transform:uppercase}
+nav a:hover{background:var(--ink);color:#fff}
+@media (max-width:760px){nav{display:none}}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;border:2px solid var(--ink);font:600 15px var(--mono);text-transform:uppercase;padding:12px 18px;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.w{background:var(--white);color:var(--ink)}
+
+.hero{padding:56px 0 48px}
+.tb{display:grid;grid-template-columns:1.5fr 1fr;border:2px solid var(--ink);background:var(--white)}
+.tb .main{padding:clamp(20px,4vw,44px);border-right:2px solid var(--ink)}
+.tb h1{font:700 clamp(36px,6vw,72px)/1.02 var(--sans);letter-spacing:-.02em}
+.tb h1 span{color:var(--blue)}
+.tb p{color:var(--mute);font-size:18px;margin:18px 0 26px;max-width:50ch}
+.stamp{display:grid;grid-template-rows:repeat(4,1fr)}
+.stamp div{border-bottom:1px solid var(--ink);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.stamp div:last-child{border-bottom:0}
+.stamp small{font:500 11px var(--mono);text-transform:uppercase;color:var(--mute);letter-spacing:.08em}
+.stamp b{font:600 20px var(--mono);text-align:right}
+@media (max-width:860px){.tb{grid-template-columns:1fr}.tb .main{border-right:0;border-bottom:2px solid var(--ink)}}
+
+section{padding:56px 0}
+.sh{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:28px;flex-wrap:wrap}
+.sh .mono{color:var(--orange);font-weight:600}
+.sh h2{font:700 clamp(28px,4vw,44px)/1.1 var(--sans)}
+.sh p{color:var(--mute);margin-left:auto;max-width:44ch;font-size:15px}
+
+.calc{display:grid;grid-template-columns:1fr 1.1fr;border:2px solid var(--ink);background:var(--white)}
+.inputs{padding:24px;border-right:2px solid var(--ink);display:grid;gap:22px;align-content:start}
+.inputs fieldset{border:0;min-width:0}
+.inputs legend,.inputs .lab{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin-bottom:8px;display:block}
+.area{display:flex;gap:12px;align-items:center}
+.area input[type=range]{flex:1;accent-color:var(--orange);min-width:0}
+.area input[type=number]{width:96px;font:600 20px var(--mono);border:2px solid var(--ink);padding:6px 8px;background:var(--paper)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink)}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0}
+.seg span{display:block;padding:10px 8px;text-align:center;font:500 14px var(--sans);border-right:1px solid var(--ink);height:100%}
+.seg label:last-child span{border-right:0}
+.seg span small{display:block;font:400 12px var(--mono);color:var(--mute)}
+.seg input:checked+span{background:var(--ink);color:#fff}
+.seg input:checked+span small{color:#cfd6df}
+.seg input:focus-visible+span{outline:3px solid var(--orange);outline-offset:-3px}
+.opts{display:grid;gap:8px}
+.opts label{display:flex;gap:10px;align-items:center;font-size:15px;cursor:pointer}
+.opts input{width:18px;height:18px;accent-color:var(--orange)}
+.opts .mono{margin-left:auto;color:var(--mute);font-size:13px}
+.out{padding:24px;display:flex;flex-direction:column;gap:16px}
+.total{border:2px solid var(--ink);padding:16px;background:var(--paper)}
+.total small{font:600 12px var(--mono);text-transform:uppercase;color:var(--mute);letter-spacing:.08em}
+.total b{display:block;font:600 clamp(30px,5vw,48px)/1.1 var(--mono);margin:6px 0}
+.total .range{font:400 14px var(--mono);color:var(--mute)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--grid2);padding:8px 6px;text-align:left}
+th{font:600 11px var(--mono);text-transform:uppercase;color:var(--mute);letter-spacing:.06em}
+td.n,th.n{text-align:right;font-family:var(--mono);white-space:nowrap}
+tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:0}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meta div{border:1px solid var(--ink);padding:10px}
+.meta small{font:600 11px var(--mono);text-transform:uppercase;color:var(--mute)}
+.meta b{display:block;font:600 20px var(--mono)}
+.disclaimer{font-size:13px;color:var(--mute)}
+@media (max-width:900px){.calc{grid-template-columns:1fr}.inputs{border-right:0;border-bottom:2px solid var(--ink)}}
+@media (max-width:420px){.seg{grid-template-columns:1fr}.seg span{border-right:0;border-bottom:1px solid var(--ink)}.seg label:last-child span{border-bottom:0}}
+
+.stages{display:grid;grid-template-columns:repeat(6,1fr);border:2px solid var(--ink);background:var(--white)}
+.stage{padding:18px;border-right:1px solid var(--ink);position:relative}
+.stage:last-child{border-right:0}
+.stage .mono{font-size:12px;color:var(--orange);font-weight:600}
+.stage h3{font:600 17px/1.25 var(--sans);margin:8px 0}
+.stage p{font-size:14px;color:var(--mute)}
+.stage .d{display:block;margin-top:10px;font:500 12px var(--mono);border-top:1px dashed var(--grid2);padding-top:8px}
+@media (max-width:1000px){.stages{grid-template-columns:repeat(3,1fr)}.stage:nth-child(3){border-right:0}.stage:nth-child(-n+3){border-bottom:1px solid var(--ink)}}
+@media (max-width:560px){.stages{grid-template-columns:1fr}.stage{border-right:0;border-bottom:1px solid var(--ink)}.stage:last-child{border-bottom:0}}
+
+.ex{display:grid;gap:12px}
+details{border:2px solid var(--ink);background:var(--white)}
+summary{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:16px 18px;cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary .mono.id{font-size:12px;color:var(--orange);font-weight:600}
+summary h3{font:600 18px var(--sans)}
+summary h3 small{display:block;font:400 14px var(--sans);color:var(--mute)}
+summary .sum{font:600 18px var(--mono);white-space:nowrap}
+summary::after{content:"+";font:600 22px var(--mono);grid-column:4}
+details[open] summary::after{content:"−"}
+details[open] summary{border-bottom:1px solid var(--ink)}
+.exbody{padding:12px 18px 18px;overflow-x:auto}
+@media (max-width:600px){summary{grid-template-columns:1fr auto}summary .mono.id{grid-column:1/-1}summary::after{grid-column:2;grid-row:2}summary .sum{grid-column:1}}
+
+.cta{border:2px solid var(--ink);background:var(--ink);color:#fff;padding:clamp(20px,4vw,40px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.cta h2{font:700 clamp(24px,3.5vw,36px)/1.2 var(--sans)}
+.cta p{color:#c2c8cf;font-family:var(--mono);font-size:14px;margin-top:8px}
+footer{padding:28px 0;font:400 13px var(--mono);color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:16px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.btn:hover{transform:none}}
+html{scrollbar-width:thin;scrollbar-color:#777 transparent}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(120,120,120,.6);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+</style>
+</head>
+<body>
+<div class="concept">КОНЦЕПТ ДЛЯ ПОРТФОЛИО, БРЕНД И ДАННЫЕ ВЫМЫШЛЕНЫ</div>
+<header><div class="wrap">
+  <a class="logo" href="#top"><svg viewBox="0 0 22 34" aria-hidden="true"><line x1="11" y1="0" x2="11" y2="20" stroke="#16191d" stroke-width="2"/><path d="M11 20l8 6-8 8-8-8z" fill="#ff5b1f" stroke="#16191d" stroke-width="2"/></svg>ОТВЕС</a>
+  <nav aria-label="Основная навигация"><ul><li><a href="#calc">Калькулятор</a></li><li><a href="#stages">Этапы</a></li><li><a href="#examples">Сметы</a></li></ul></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+  <div class="tb">
+    <div class="main">
+      <span class="mono" style="color:var(--orange);font-weight:600">ЛИСТ 01 · РЕМОНТ КВАРТИР</span>
+      <h1>Ремонт по смете, <span>а не «по ходу»</span></h1>
+      <p>Сначала обмер и подробная смета по позициям, затем договор с фиксированной ценой работ. Отчёт с фото после каждого этапа, оплата по этапам.</p>
+      <a class="btn" href="#calc">Рассчитать стоимость</a>
+    </div>
+    <div class="stamp mono">
+      <div><small>Выезд на обмер</small><b>0 ₽</b></div>
+      <div><small>Смета</small><b>2–3 дня</b></div>
+      <div><small>Гарантия</small><b>24 мес</b></div>
+      <div><small>Оплата</small><b>по этапам</b></div>
+    </div>
+  </div>
+</div>
+
+<section id="calc">
+  <div class="wrap">
+    <div class="sh"><span class="mono">02</span><h2>Калькулятор стоимости</h2><p>Ориентир для работ и черновых материалов. Чистовые материалы, мебель и техника считаются отдельно.</p></div>
+    <form class="calc" id="calcForm" onsubmit="return false">
+      <div class="inputs">
+        <div>
+          <label class="lab" for="areaNum">Площадь, м²</label>
+          <div class="area">
+            <input type="range" id="areaRange" min="15" max="250" value="54" aria-label="Площадь, ползунок">
+            <input type="number" id="areaNum" min="15" max="250" value="54" inputmode="numeric">
+          </div>
+        </div>
+        <fieldset>
+          <legend>Тип объекта</legend>
+          <div class="seg">
+            <label><input type="radio" name="type" value="new" checked><span>Новостройка<small>без отделки</small></span></label>
+            <label><input type="radio" name="type" value="old"><span>Вторичка<small>с демонтажом</small></span></label>
+            <label><input type="radio" name="type" value="house"><span>Дом<small>до 250 м²</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Класс отделки</legend>
+          <div class="seg">
+            <label><input type="radio" name="cls" value="eco"><span>Эконом<small>покраска, ламинат</small></span></label>
+            <label><input type="radio" name="cls" value="std" checked><span>Стандарт<small>плитка, инж. доска</small></span></label>
+            <label><input type="radio" name="cls" value="prem"><span>Премиум<small>сложные узлы</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Дополнительно</legend>
+          <div class="opts">
+            <label><input type="checkbox" name="opt" value="elec" checked>Новая электрика<span class="mono">+1 900 ₽/м²</span></label>
+            <label><input type="checkbox" name="opt" value="plumb" checked>Разводка сантехники<span class="mono">+65 000 ₽</span></label>
+            <label><input type="checkbox" name="opt" value="floor">Тёплый пол в санузле<span class="mono">+28 000 ₽</span></label>
+            <label><input type="checkbox" name="opt" value="ceil">Натяжные потолки<span class="mono">+950 ₽/м²</span></label>
+          </div>
+        </fieldset>
+      </div>
+      <div class="out" aria-live="polite">
+        <div class="total"><small>Ориентировочно, работы + черновые материалы</small><b id="total" class="mono">—</b><span class="range" id="range"></span></div>
+        <table>
+          <thead><tr><th>Раздел</th><th class="n">Сумма, ₽</th><th class="n">Доля</th></tr></thead>
+          <tbody id="rows"></tbody>
+          <tfoot><tr><td>Итого</td><td class="n" id="tfoot">—</td><td class="n">100%</td></tr></tfoot>
+        </table>
+        <div class="meta"><div><small>Срок</small><b id="term">—</b></div><div><small>За м²</small><b id="perM">—</b></div></div>
+        <p class="disclaimer">Расчёт ориентировочный. Точную цену фиксируем в смете после бесплатного обмера. Цены условные, для концепта.</p>
+        <a class="btn" href="#examples">Посмотреть примеры смет</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="stages">
+  <div class="wrap">
+    <div class="sh"><span class="mono">03</span><h2>Этапы работ</h2><p>Каждый этап закрываем актом и фотоотчётом. Следующий этап оплачивается только после приёмки предыдущего.</p></div>
+    <div class="stages">
+      <div class="stage"><span class="mono">ЭТАП 1</span><h3>Обмер и смета</h3><p>Лазерный обмер, фото узлов, смета по позициям с объёмами.</p><span class="d">2–3 дня</span></div>
+      <div class="stage"><span class="mono">ЭТАП 2</span><h3>Демонтаж и черновые</h3><p>Снос перегородок по проекту, вывоз мусора, стяжка, штукатурка по маякам.</p><span class="d">2–4 недели</span></div>
+      <div class="stage"><span class="mono">ЭТАП 3</span><h3>Инженерия</h3><p>Электрика по схеме, разводка воды и канализации, опрессовка.</p><span class="d">1–2 недели</span></div>
+      <div class="stage"><span class="mono">ЭТАП 4</span><h3>Санузлы и плитка</h3><p>Гидроизоляция с проверкой проливом, инсталляции, укладка плитки.</p><span class="d">2–3 недели</span></div>
+      <div class="stage"><span class="mono">ЭТАП 5</span><h3>Чистовая отделка</h3><p>Шпаклёвка, покраска, напольные покрытия, двери, плинтусы.</p><span class="d">3–4 недели</span></div>
+      <div class="stage"><span class="mono">ЭТАП 6</span><h3>Сдача</h3><p>Финальный осмотр по чек-листу, клининг, исполнительная схема коммуникаций.</p><span class="d">2–3 дня</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="examples">
+  <div class="wrap">
+    <div class="sh"><span class="mono">04</span><h2>Примеры смет</h2><p>Типовые сметы по укрупнённым разделам. Объекты условные, суммы ориентировочные.</p></div>
+    <div class="ex" id="exList"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap cta">
+    <div><h2>Вызвать замерщика</h2><p>+7 (000) 000-00-00 · заглушка · пн–сб 9:00–20:00</p></div>
+    <a class="btn w" href="#calc">Сначала посчитать</a>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>ОТВЕС · ремонт квартир и домов</span><span>Концепт для портфолио, бренд и данные вымышлены</span></div></footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const fmt=n=>Math.round(n).toLocaleString('ru-RU');
+const BASE={eco:9000,std:14500,prem:23000};
+const TYPE={new:{k:1,demo:0,name:'Новостройка'},old:{k:1.08,demo:1400,name:'Вторичка'},house:{k:1.15,demo:600,name:'Дом'}};
+const SPLIT=[['Черновые работы: стены, стяжка',.34],['Санузлы и плитка',.24],['Чистовая отделка',.30],['Двери, плинтусы, мелочи',.12]];
+function calc(){
+  const area=Math.min(250,Math.max(15,+$('#areaNum').value||15));
+  const t=TYPE[document.querySelector('[name=type]:checked').value];
+  const c=document.querySelector('[name=cls]:checked').value;
+  const opts=[...document.querySelectorAll('[name=opt]:checked')].map(i=>i.value);
+  const base=BASE[c]*area*t.k;
+  const rows=SPLIT.map(([n,p])=>[n,base*p]);
+  if(t.demo)rows.unshift(['Демонтаж и вывоз мусора',t.demo*area]);
+  if(opts.includes('elec'))rows.push(['Электрика',1900*area]);
+  if(opts.includes('plumb'))rows.push(['Разводка сантехники',65000*(t.name==='Дом'?1.4:1)]);
+  if(opts.includes('floor'))rows.push(['Тёплый пол в санузле',28000]);
+  if(opts.includes('ceil'))rows.push(['Натяжные потолки',950*area]);
+  const total=rows.reduce((s,r)=>s+r[1],0);
+  $('#rows').innerHTML=rows.map(([n,v])=>`<tr><td>${n}</td><td class="n">${fmt(v)}</td><td class="n">${Math.round(v/total*100)}%</td></tr>`).join('');
+  $('#total').textContent=fmt(total)+' ₽';
+  $('#range').textContent=`разброс по смете: ${fmt(total*.9)} – ${fmt(total*1.12)} ₽`;
+  $('#tfoot').textContent=fmt(total);
+  $('#perM').textContent=fmt(total/area)+' ₽';
+  const weeks=Math.ceil((6+area/9)*({eco:.8,std:1,prem:1.35}[c])*(t.name==='Вторичка'?1.1:1));
+  $('#term').textContent=`${weeks}–${weeks+3} нед`;
+}
+$('#areaRange').addEventListener('input',e=>{$('#areaNum').value=e.target.value;calc()});
+$('#areaNum').addEventListener('input',e=>{const v=+e.target.value;if(v>=15&&v<=250)$('#areaRange').value=v;calc()});
+$('#areaNum').addEventListener('change',e=>{const v=Math.min(250,Math.max(15,+e.target.value||15));e.target.value=v;$('#areaRange').value=v;calc()});
+$('#calcForm').addEventListener('change',calc);
+calc();
+
+const EX=[
+  {id:'СМ-014',t:'Однокомнатная, новостройка, 38 м²',d:'Стандарт, без перепланировки, совмещённый санузел',w:'9 недель',rows:[['Стяжка пола, 38 м²',47500],['Штукатурка стен по маякам, 112 м²',89600],['Электрика, 42 точки',72200],['Разводка сантехники',65000],['Санузел: гидроизоляция и плитка, 24 м²',118000],['Шпаклёвка и покраска стен',96300],['Инженерная доска, укладка',41800],['Двери, 3 шт., монтаж',27000],['Натяжные потолки',36100]]},
+  {id:'СМ-027',t:'Двухкомнатная, вторичка, 56 м²',d:'Стандарт, демонтаж старой отделки, раздельный санузел',w:'13 недель',rows:[['Демонтаж и вывоз мусора',78400],['Выравнивание пола, 56 м²',72800],['Штукатурка стен, 168 м²',134400],['Замена электрики, 61 точка',106400],['Сантехника с заменой стояков',94000],['Ванная и туалет: плитка, 38 м²',182400],['Покраска стен и потолков',141200],['Ламинат 33 класса, укладка',50400],['Двери, 5 шт., монтаж',45000]]},
+  {id:'СМ-033',t:'Трёхкомнатная, новостройка, 84 м²',d:'Премиум: скрытые двери, теневой профиль, два санузла',w:'19 недель',rows:[['Стяжка с шумоизоляцией, 84 м²',151200],['Штукатурка стен, 246 м²',221400],['Электрика, умный свет, 118 точек',264600],['Сантехника, два санузла, инсталляции',148000],['Два санузла: керамогранит, 72 м²',446400],['Шпаклёвка под покраску Q4',248000],['Паркетная доска, укладка ёлочкой',201600],['Скрытые двери, 6 шт.',156000],['Теневой профиль и ниши под карнизы',97400]]}
+];
+$('#exList').innerHTML=EX.map(e=>{const s=e.rows.reduce((a,r)=>a+r[1],0);return `<details><summary><span class="mono id">${e.id}</span><h3>${e.t}<small>${e.d} · срок ${e.w}</small></h3><span class="sum">${fmt(s)} ₽</span></summary>
+<div class="exbody"><table><thead><tr><th>Позиция</th><th class="n">Сумма, ₽</th></tr></thead><tbody>${e.rows.map(r=>`<tr><td>${r[0]}</td><td class="n">${fmt(r[1])}</td></tr>`).join('')}</tbody>
+<tfoot><tr><td>Итого работы и черновые</td><td class="n">${fmt(s)}</td></tr><tr><td style="font-weight:400;color:var(--mute)">За м²</td><td class="n" style="font-weight:400;color:var(--mute)">${fmt(s/parseInt(e.t.match(/(\d+) м²/)[1]))}</td></tr></tfoot></table></div></details>`}).join('');
+</script>
+</body>
+</html>

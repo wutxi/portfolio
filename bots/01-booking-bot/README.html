@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бот записи в барбершоп «Кирпич»</title>
+<style>
+:root{--bg:#050505;--panel:rgba(255,255,255,.08);--line:rgba(255,255,255,.16);--text:#f5f5f5;--muted:rgba(245,245,245,.62);--red:#fff;--red2:#fff}
+*{box-sizing:border-box}
+html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.35) transparent;color-scheme:dark}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28);border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.5);background-clip:padding-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;overflow-x:hidden}
+main{width:min(820px,100% - 32px);margin:0 auto;padding:40px 0 72px}
+a{color:var(--red2)}
+a:focus-visible{outline:3px solid var(--red2);outline-offset:3px;border-radius:4px}
+.back{display:inline-block;margin-bottom:28px;font:600 14px ui-monospace,Consolas,monospace;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--text)}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 20px}
+h2{font-size:24px;margin:44px 0 12px;padding-top:20px;border-top:1px solid var(--line)}
+p,li{color:rgba(245,245,245,.82)}
+ul,ol{padding-left:22px}
+li{margin:6px 0}
+li::marker{color:var(--red)}
+strong{color:var(--text)}
+blockquote{margin:0 0 24px;padding:12px 16px;border-left:3px solid var(--red);background:var(--panel);border-radius:0 10px 10px 0;color:var(--muted)}
+blockquote p{margin:0;color:var(--muted)}
+code{font:500 .9em ui-monospace,Consolas,monospace;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;overflow-x:auto}
+pre code{border:0;padding:0;background:none}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:12px 0}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:600}
+footer{margin-top:56px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../../index.html">← к портфолио</a>
+<h1>Бот записи в барбершоп «Кирпич»</h1>
+<blockquote><p>Концепт для портфолио, бренд и данные вымышлены. Барбершоп, мастера и адрес я придумал.</p></blockquote>
+<p>Типичная боль маленького салона: администратор весь день отвечает в личке «а на завтра есть время?». Этот бот берёт запись на себя. Клиент сам выбирает услугу, мастера, день и свободное окно, а мастер получает уведомление о новой записи.</p>
+<h2>Что умеет</h2>
+<ul><li><strong>Запись по шагам.</strong> Услуга → мастер → день в календаре → свободное время → телефон → подтверждение. Мастеров бот показывает только тех, кто делает выбранную услугу.</li><li><strong>Нормальный календарь прямо в чате.</strong> Можно записаться на 14 дней вперёд, выходные мастера недоступны.</li><li><strong>Только реально свободные окна.</strong> Бот учитывает длительность услуги: если «стрижка + борода» идёт 90 минут, он не предложит время, которое налезает на чужую запись.</li><li><strong>Защита от двойной записи.</strong> Перед сохранением бот ещё раз проверяет слот. Если его успели занять, предложит выбрать другое время.</li><li><strong>Уведомления админу</strong> о каждой новой записи и каждой отмене.</li><li><strong>Отмена.</strong> Команда <code>/my</code> показывает будущие записи, отменить любую можно одной кнопкой.</li><li><strong>Напоминание за 2 часа</strong> до визита приходит само.</li><li><strong>Записи на сегодня</strong> — админ может посмотреть их командой <code>/today</code>.</li><li><strong>Передумали</strong> — <code>/cancel</code> прерывает запись на любом шаге.</li></ul>
+<h2>Как запустить (5 шагов)</h2>
+<ol><li>Поставьте Python 3.10 или новее и откройте терминал в этой папке.</li><li>Создайте окружение и установите зависимости:<pre><code>python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt</code></pre> На macOS и Linux вместо второй строки: <code>source .venv/bin/activate</code>.</li><li>Напишите @BotFather в Telegram, создайте бота и скопируйте токен.</li><li>Скопируйте <code>.env.example</code> в <code>.env</code>, впишите <code>BOT_TOKEN</code> и свой <code>ADMIN_ID</code> (числовой ID покажет @userinfobot).</li><li>Запустите <code>python bot.py</code> и напишите боту <code>/start</code>.</li></ol>
+<p>Бот работает, пока открыт терминал. Чтобы он работал круглосуточно, его надо запустить на сервере. С этим я тоже помогаю.</p>
+<h2>Как поменять под свой салон</h2>
+<p>Всё лежит в <code>keyboards.py</code>:</p>
+<ul><li><code>SERVICES</code> — услуги, длительность и цены;</li><li><code>MASTERS</code> — мастера, что они умеют и в какие дни отдыхают;</li><li><code>OPEN_HOUR</code> и <code>CLOSE_HOUR</code> — часы работы, <code>HORIZON_DAYS</code> — на сколько дней вперёд можно записаться.</li></ul>
+<p>Часовой пояс задаётся в <code>.env</code> (<code>TZ_NAME</code>), по умолчанию московский.</p>
+<h2>Проверка без Telegram</h2>
+<p><code>python smoke_test.py</code> подменяет Telegram и прогоняет весь путь: запись, уведомление админу, занятость слота, отмену и напоминание. Токен для этого не нужен.</p>
+<h2>Что где лежит</h2>
+<div class="table"><table><thead><tr><th>Файл</th><th>Что внутри</th></tr></thead><tbody><tr><td><code>bot.py</code></td><td>логика бота, шаги записи, напоминания, запуск</td></tr><tr><td><code>keyboards.py</code></td><td>услуги, мастера, календарь и кнопки</td></tr><tr><td><code>db.py</code></td><td>база записей в SQLite</td></tr><tr><td><code>smoke_test.py</code></td><td>проверка без Telegram</td></tr></tbody></table></div>
+<footer>Концепт для портфолио, бренд и данные вымышлены · Telegram <a href="https://t.me/primewutxi">@primewutxi</a></footer>
+</main>
+</body>
+</html>

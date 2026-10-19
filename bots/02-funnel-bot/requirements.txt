@@ -1,0 +1,4 @@
+aiogram>=3.13,<4
+python-dotenv>=1.0
+# только для пересборки PDF чек-листа (make_checklist.py):
+# pymupdf>=1.24
