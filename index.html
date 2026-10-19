@@ -19,7 +19,6 @@ img{display:block;max-width:100%}
 :focus-visible{outline:2px solid #fff;outline-offset:3px;border-radius:12px}
 .wrap{width:min(1080px,100% - 32px);margin-inline:auto}
 
-/* фон: мягкие серые пятна, чтобы стеклу было что преломлять */
 body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);pointer-events:none}
 body::before{width:55vmax;height:55vmax;left:-15vmax;top:-12vmax;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 65%)}
 body::after{width:45vmax;height:45vmax;right:-12vmax;top:35vh;background:radial-gradient(circle,rgba(200,200,200,.2),transparent 65%)}
@@ -29,7 +28,6 @@ body::after{width:45vmax;height:45vmax;right:-12vmax;top:35vh;background:radial-
 }
 @keyframes drift{to{transform:translate(8vmax,6vmax)}}
 
-/* жидкое стекло */
 .glass{
   background:linear-gradient(135deg,var(--g1),var(--g2));
   -webkit-backdrop-filter:blur(20px) saturate(1.7);backdrop-filter:blur(20px) saturate(1.7);
