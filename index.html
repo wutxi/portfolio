@@ -284,7 +284,7 @@ async function apply(f){
   const leaving=shown().filter(c=>!keep(c));
   const coming=cards.filter(c=>c.hidden&&keep(c));
   if(calm){cards.forEach(c=>{c.hidden=!keep(c)});return}
-  const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:650,easing:ease,fill:'forwards'}));
+  const out=leaving.map(c=>c.animate([{opacity:1,transform:'none',filter:'blur(0)'},{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'}],{duration:700,easing:ease,fill:'forwards'}));
   await Promise.all(out.map(wait));
   const h0=grid.offsetHeight;
   const before=new Map(shown().filter(keep).map(c=>[c,c.getBoundingClientRect()]));
@@ -306,7 +306,7 @@ async function apply(f){
     const dx=r.left-n.left,dy=r.top-n.top;
     if(dx||dy)moves.push(c.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'none'}],{duration:d,easing:ease}));
   });
-  coming.forEach(c=>{moves.push(c.animate([{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:d,easing:ease,delay:200,fill:'backwards'}))});
+  coming.forEach(c=>{moves.push(c.animate([{opacity:0,transform:'translateY(36px) scale(.92)',filter:'blur(6px)'},{opacity:1,transform:'none',filter:'blur(0)'}],{duration:d,easing:ease,fill:'backwards'}))});
   await Promise.all(moves.map(wait));
 }
 async function select(b){
